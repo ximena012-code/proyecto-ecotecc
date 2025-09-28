@@ -139,6 +139,7 @@ const VenderDispositivo = () => {
             imagen: null
           });
         }, 3000);
+      // eslint-disable-next-line no-unused-vars
       } catch (error) {
         alert('Error enviando el formulario');
       } finally {
