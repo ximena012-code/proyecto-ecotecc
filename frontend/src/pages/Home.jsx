@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { obtenerProductosMasVistos } from '../api/api';
+import { obtenerProductosMasVistos } from '../api/api.js';
 import {
   agregarFavorito,
   eliminarFavorito,
