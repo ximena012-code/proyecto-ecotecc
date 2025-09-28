@@ -5,7 +5,7 @@ import axios from 'axios';
 import Estrellas from "../components/Estrellas";
 import '../style/PagoExitoso.css';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://ecotec-backend.onrender.com';
 
 const PagoExitoso = () => {
   const stripe = useStripe();
