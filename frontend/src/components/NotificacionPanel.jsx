@@ -23,7 +23,7 @@ const NotificacionPanel = ({ isOpen, onClose, onUpdateUnread }) => {
   const fetchNotificaciones = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/notificaciones', {
+      const response = await axios.get('https://ecotec-backend.onrender.com/api/notificaciones', {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Filtrar según el rol del usuario
@@ -52,7 +52,7 @@ const NotificacionPanel = ({ isOpen, onClose, onUpdateUnread }) => {
   const marcarComoLeida = async (idNotificacion) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/notificaciones/${idNotificacion}/leida`, {}, {
+      await axios.put(`https://ecotec-backend.onrender.com/api/notificaciones/${idNotificacion}/leida`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNotificaciones(prev => 
