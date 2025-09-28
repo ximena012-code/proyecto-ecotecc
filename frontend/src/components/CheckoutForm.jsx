@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import '../style/CheckoutForm.css'; // Crea un archivo CSS para el formulario
+import '../style/CheckoutForm.css';
 
 const CheckoutForm = ({ pedidoId }) => {
   const stripe = useStripe();
@@ -8,6 +8,14 @@ const CheckoutForm = ({ pedidoId }) => {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Detectar si estamos en desarrollo o producción
+  const getBaseUrl = () => {
+    if (import.meta.env.PROD) {
+      return 'https://proyecto-ecotecc.onrender.com';
+    }
+    return 'http://localhost:5173';
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,8 +26,8 @@ const CheckoutForm = ({ pedidoId }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Stripe añadirá los detalles del pago a esta URL
-        return_url: `http://localhost:5173/pago-exitoso?pedido_id=${pedidoId}`,
+        // Usar la URL correcta según el entorno
+        return_url: `${getBaseUrl()}/pago-exitoso?pedido_id=${pedidoId}`,
       },
     });
 
