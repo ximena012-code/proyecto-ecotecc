@@ -14,7 +14,7 @@ import Productos from './pages/Productos.jsx';
 import Pedido from './pages/Pedido.jsx';
 import HistorialFacturas from './pages/HistorialFacturas.jsx';
 import AdminRoute from './components/AdminRoute.jsx';
-import UserRoute from './components/UserRoute.jsx';
+import UserRoute from './components/Userroute.jsx';
 import DashboardCuentas from './pages/DashboardCuentas.jsx'; 
 import Ventas from './pages/Ventas.jsx';
 import Calificaciones from './pages/Calificaciones.jsx';
