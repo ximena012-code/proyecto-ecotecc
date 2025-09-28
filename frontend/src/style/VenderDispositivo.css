@@ -1,0 +1,492 @@
+/* VenderDispositivo.css */
+
+.vender-page-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.vender-hero-section {
+  margin-top: 50px;
+  min-height: 70vh;
+  background: linear-gradient(135deg, #1e395f, #14b8a6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.vender-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+.vender-hero-content {
+  z-index: 2;
+  padding: 80px 20px;
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+  text-align: center;
+  justify-content: center;
+}
+
+.vender-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #E0E0E0;
+  margin-bottom: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.vender-hero-badge:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.vender-badge-icon {
+  color: #00C853;
+  font-size: 24px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.vender-hero-title {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 900;
+  margin-top: 60px;       /* menos separación arriba */
+  margin-bottom: 20px;    /* ajusta espacio con el subtítulo */
+  line-height: 1.1;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  text-align: center;     /* centrado */
+  margin-left: 0;         /* quita desplazamiento a la derecha */
+}
+
+.vender-hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #E0E0E0;
+  max-width: 700px;
+  margin: 0 auto 30px;    /* centrado automático */
+  font-weight: 400;
+  text-align: center;
+  margin-top: 50px;/* centrado */
+}
+
+
+
+.vender-gradient-text {
+  background: linear-gradient(45deg, #59b6b1, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+
+/* Benefits Section */
+.vender-benefits-section {
+  background: #f8fafc;
+  padding: 80px 0;
+}
+
+.vender-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.vender-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.vender-benefit-card {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.vender-benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.vender-benefit-icon {
+  font-size: 3rem;
+  color: #59b6b1;
+  margin-bottom: 20px;
+}
+
+.vender-benefit-card h3 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.vender-benefit-card p {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+/* Form Section */
+.vender-form-section {
+  background: white;
+  padding: 100px 0;
+}
+
+.vender-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.vender-section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.vender-section-subtitle {
+  font-size: 1.2rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vender-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f8fafc;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.vender-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.vender-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.vender-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.vender-input {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+  font-family: inherit;
+}
+
+.vender-input:focus {
+  outline: none;
+  border-color: #59b6b1;
+  box-shadow: 0 0 0 3px rgba(89, 182, 177, 0.1);
+}
+
+.vender-input:hover {
+  border-color: #cbd5e1;
+}
+
+.vender-input-error {
+  border-color: #ef4444;
+}
+
+.vender-input-error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.vender-textarea {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+  resize: vertical;
+  font-family: inherit;
+  min-height: 100px;
+}
+
+.vender-textarea:focus {
+  outline: none;
+  border-color: #59b6b1;
+  box-shadow: 0 0 0 3px rgba(89, 182, 177, 0.1);
+}
+
+.vender-textarea:hover {
+  border-color: #cbd5e1;
+}
+
+.vender-upload-container {
+  position: relative;
+}
+
+.vender-file-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.vender-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 2px dashed #59b6b1;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #59b6b1;
+  font-weight: 500;
+}
+
+.vender-upload-label:hover {
+  background: #f0fdfa;
+  border-color: #14b8a6;
+}
+
+.vender-upload-icon {
+  font-size: 20px;
+}
+
+.vender-error-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.vender-error-icon {
+  font-size: 16px;
+}
+
+.vender-submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(45deg, #59b6b1, #14b8a6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.vender-submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(89, 182, 177, 0.3);
+}
+
+.vender-submit-button:active {
+  transform: translateY(0);
+}
+
+.vender-button-icon {
+  font-size: 20px;
+}
+
+/* Success State */
+.vender-success-container {
+  text-align: center;
+  padding: 100px 20px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vender-success-icon {
+  font-size: 4rem;
+  color: #00C853;
+  margin-bottom: 24px;
+  animation: successPulse 1.5s ease-in-out;
+}
+/*mensaje de error*/
+.vender-auth-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ef4444;
+  font-size: 1rem;
+  margin-top: 18px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 500;
+}
+
+.vender-error-icon {
+  font-size: 18px;
+  color: #ef4444;
+}
+
+.vender-login-link {
+  color: #2563eb;
+  text-decoration: underline;
+  margin-left: 8px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.vender-login-link:hover {
+  color: #14b8a6;
+}
+
+@keyframes successPulse {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.vender-success-title {
+  font-size: 2rem;
+  color: #1e293b;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.vender-success-message {
+  font-size: 1.2rem;
+  color: #64748b;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vender-hero-content {
+    padding: 60px 20px;
+  }
+  
+  .vender-hero-badge {
+    font-size: 14px;
+    padding: 10px 20px;
+    margin-bottom: 28px;
+  }
+  
+  .vender-badge-icon {
+    font-size: 20px;
+  }
+  
+  .vender-hero-title {
+    margin-bottom: 24px;
+  }
+  
+  .vender-hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .vender-form-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .vender-form {
+    padding: 30px 20px;
+  }
+  
+  .vender-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .vender-benefit-card {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vender-hero-section {
+    min-height: 60vh;
+  }
+  
+  .vender-hero-content {
+    padding: 40px 15px;
+  }
+  
+  .vender-hero-badge {
+    font-size: 13px;
+    padding: 8px 16px;
+    gap: 8px;
+  }
+  
+  .vender-badge-icon {
+    font-size: 18px;
+  }
+  
+  .vender-hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .vender-section-title {
+    font-size: 2rem;
+  }
+  
+  .vender-section-subtitle {
+    font-size: 1.1rem;
+  }
+} 
+
+.vender-auth-warning{
+  margin-top:200px;
+  font-size:18px;
+}

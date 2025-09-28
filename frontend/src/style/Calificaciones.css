@@ -1,0 +1,285 @@
+/* ===== DASHBOARD - MEJORADO CON COLORES Y FONDO TRANSPARENTE ===== */
+
+/* Layout General - Fondo transparente */
+.dashboard-wrapper {
+  min-height: 100vh;
+  background:  linear-gradient(135deg, #fefefe 0%, #eaf5ff 100%);/* Fondo transparente igual a otros */
+  padding: 2rem;
+}
+
+.dashboard-container {
+  max-width: 1300px;
+  margin: 150px auto 50px;
+}
+
+/* Título centrado con gradiente como otros componentes */
+.dashboard-title {
+   font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  margin-left: 20px; /* mantiene el mismo margen que en productos */
+  background: linear-gradient(90deg, #343a40 0%, #17a2b8 60%); /* degradado más corto */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left; /* fuerza alineado a la izquierda */
+  margin-top:30px;
+  margin-bottom: 50px;
+}
+
+/* Grid de estadísticas mejorado */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card1-stats {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.card1-stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #17a2b8, #20c997, #17a2b8, #59B6B2);
+  border-radius: 16px 16px 0 0;
+}
+
+.card-stats:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+/* Filtro de período con colores vibrantes */
+.period-filter {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-wrap: wrap;
+}
+
+/* Botones de período con gradientes coloridos */
+.period-button {
+ padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  background: #f8fafc;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.period-button.active {
+   background: #f8fafc;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.period-button:not(.active) {
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.period-button:not(.active):hover {
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  transform: translateY(-1px);
+}
+
+/* Tarjetas de gráficos mejoradas */
+.chart-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Título de gráfico con gradiente */
+.chart-title {
+  background: linear-gradient(90deg, #343a40, #17a2b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Valores estadísticos con colores dinámicos */
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #1e293b, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Etiquetas con colores suaves */
+.stat-label {
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-period {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* Iconos de estadísticas con gradientes */
+.stat-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.stat-icon.blue {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+}
+
+.stat-icon.green {
+  background: linear-gradient(135deg, #34d399, #10b981);
+}
+
+
+
+
+
+
+.stat-icon.indigo {
+  background: linear-gradient(135deg, #818cf8, #6366f1);
+}
+
+/* Efectos hover adicionales */
+.period-filter:hover,
+.chart-card:hover,
+.card-stats:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsividad mejorada */
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    padding: 1rem;
+  }
+  
+  .dashboard-container {
+    margin-top: 120px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .period-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .period-button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-wrapper {
+    padding: 0.5rem;
+  }
+  
+  .card-stats {
+    padding: 1.25rem;
+  }
+  
+  .chart-card {
+    padding: 1.25rem;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+  }
+}  
+
+
+.back-to-dashboard7 {
+  align-self: flex-start;  /* lo lleva a la izquierda */
+  margin-top: 2rem;        /* espacio hacia arriba */
+}
+.back-to-dashboard7 {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+
+
+.back-to-dashboard7 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-to-dashboard7 a:hover {
+  color: #3b82f6;
+  border-color: #3b82f6;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.back-to-dashboard7 a::before {
+  font-size: 1rem;
+  font-weight: bold;
+}

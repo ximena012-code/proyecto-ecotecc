@@ -1,0 +1,318 @@
+/* ===== VENTAS - CON FONDO TRANSPARENTE COMO FAVORITOS ===== */
+
+/* Layout General - Fondo transparente */
+.ventas-wrapper {
+  min-height: 100vh;
+  background:  linear-gradient(135deg, #fefefe 0%, #eaf5ff 100%);
+  padding: 2rem;
+}
+
+.ventas-container {
+  max-width: 1300px;
+  margin: 180px auto 50px;
+  padding-bottom: 50px;
+}
+
+
+/* Título centrado igual al de Favoritos */
+.dashboard2-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  margin-left: 20px; /* mantiene el mismo margen que en productos */
+  background: linear-gradient(90deg, #343a40 0%, #17a2b8 60%); /* degradado más corto */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left; /* fuerza alineado a la izquierda */
+  margin-top:30px;
+  margin-bottom: 50px;
+}
+
+/* Icono del título (mantener funcionalidad) */
+.icon-title {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.75rem;
+  color: #17a2b8;
+}
+
+/* Filtros - Diseño más suave */
+.ventas-filtros {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ventas-filtros .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #64748b;
+}
+
+.ventas-filtros span {
+  font-weight: 500;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.filtro-btn {
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  background: #f8fafc;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.filtro-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+.filtro-btn-activo {
+  background: #f8fafc;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* KPIs - Colores más suaves */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 1.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border-color: #e2e8f0;
+}
+
+.kpi-card p {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpi-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: #1e293b;
+}
+
+.kpi-card small {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Iconos en KPIs - Tonos más suaves */
+.icon-wrapper {
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  min-width: 3.5rem;
+  min-height: 3.5rem;
+}
+
+.icon-wrapper.blue {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+}
+
+.icon-wrapper.green {
+  background: linear-gradient(135deg, #34d399, #10b981);
+}
+
+.icon-wrapper.purple {
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+}
+
+/* Chart - Diseño más limpio */
+.ventas-chart {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.ventas-chart:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+/* Estados de carga y error */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 1.1rem;
+  color: #64748b;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 1.1rem;
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #94a3b8;
+  gap: 1rem;
+}
+
+.no-data .icon {
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.5;
+}
+
+.no-data p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Responsividad mejorada */
+@media (max-width: 768px) {
+  .ventas-container {
+    padding: 1rem;
+    margin-top: 120px;
+  }
+  
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .kpi-card {
+    padding: 1.25rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .icon-wrapper {
+    margin-bottom: 0.75rem;
+  }
+  
+  .ventas-filtros {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .filtro-btn {
+    flex: 1;
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-card h2 {
+    font-size: 1.75rem;
+  }
+  
+  .ventas-chart {
+    padding: 1rem;
+  }
+}
+
+
+.back-to-dashboard5 {
+  align-self: flex-start;  /* lo lleva a la izquierda */
+  margin-top: 2rem;        /* espacio hacia arriba */
+}
+.back-to-dashboard5 {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+
+
+.back-to-dashboard5 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-to-dashboard5 a:hover {
+  color: #3b82f6;
+  border-color: #3b82f6;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.back-to-dashboard5 a::before {
+  font-size: 1rem;
+  font-weight: bold;
+}

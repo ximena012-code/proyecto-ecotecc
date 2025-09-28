@@ -1,0 +1,377 @@
+/* ===== ESTILOS DE CATEGORÍA CON FONDO DE BOLITAS ===== */
+
+/* Contenedor principal con fondo y círculos animados */
+.cat-wrap {
+  padding-top: 120px; /* Aumentado de 60px a 120px para evitar superposición */
+  padding-bottom: 80px; /* Aumentado para más espacio */
+  background: #F5F7FA;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5; 
+  gap:5;
+}
+
+/* Círculos animados para categoría - Círculo 1 */
+.cat-wrap::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 179, 179, 0.291), rgba(0, 196, 180, 0.08));
+  top: 50px;
+  right: 80px;
+  animation: destacadosFloat1 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Círculo 2 */
+.cat-wrap::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 35%, rgba(0, 179, 179, 0.312), rgba(135, 207, 235, 0.139));
+  bottom: 95px;
+  left: 50px;
+  animation: destacadosFloat2 10s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+/* Círculo adicional 3 - usando clase extra */
+.cat-circle-extra {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 196, 180, 0.1), rgba(135, 206, 235, 0.04));
+  top: 200px;
+  left: 200px;
+  animation: destacadosFloat3 12s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Círculo adicional 4 */
+.cat-circle-extra-2 {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 60%, rgba(0, 179, 179, 0.2), rgba(135, 207, 235, 0.06));
+  top: 300px;
+  right: 150px;
+  animation: destacadosFloat1 15s ease-in-out infinite reverse;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Animaciones para los círculos flotantes */
+@keyframes destacadosFloat1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes destacadosFloat2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(-180deg); }
+}
+
+@keyframes destacadosFloat3 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-15px) translateX(15px); }
+  66% { transform: translateY(15px) translateX(-10px); }
+}
+
+/* Título de categoría con z-index para estar por encima de los círculos */
+.cat-wrap h2 {
+  margin-top:60px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #002366;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* Grid de productos (sin carrusel) con z-index */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 280px)); /* ancho fijo entre 240 y 280px */
+  gap: 20px;
+  justify-content: center; /* centra las columnas */
+  position: relative;
+  z-index: 5;
+}
+
+
+/* Tarjeta de producto con z-index */
+.featured-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  text-align: center;
+  width: 100%;
+  max-width: 280px;
+  position: relative;
+  z-index: 5; /* Por encima de los círculos */
+}
+
+.featured-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Icono de favorito (estrella arriba a la derecha) */
+.card-header {
+  position: absolute;
+  top: -8px;
+  right: 3px;
+}
+
+/* Imagen */
+.card-img-top {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* Nombre */
+.card-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+/* Precio */
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+/* Botón */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #00b86b;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #009e5c;
+}
+
+/* Estilo Favoritos */
+.favorites-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  color: #002366;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+.favorites-icon:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.mensaje-flotante {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #323232;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: fadeInOut 3s ease forwards;
+  z-index: 1000;
+}
+/* ===== PRODUCTOS SIN STOCK ===== */
+.card-out-of-stock {
+  position: relative;
+  opacity: 0.7;
+  filter: grayscale(0.5);
+}
+
+.card-out-of-stock .card-img-top {
+  opacity: 0.6;
+}
+
+.out-of-stock-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #dc3545;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stock-status {
+  font-size: 12px;
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+.stock-status.out-of-stock {
+  color: #dc3545;
+}
+
+.btn.disabled {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+
+.btn.disabled:hover {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  transform: none !important;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* ===== RESPONSIVE DESIGN PARA CATEGORÍAS ===== */
+@media (max-width: 1024px) {
+  .cat-wrap {
+    padding: 120px 80px;
+  }
+  
+  /* Ajustar círculos para tablets */
+  .cat-wrap::before {
+    width: 150px;
+    height: 150px;
+    top: 40px;
+    right: 50px;
+  }
+  
+  .cat-wrap::after {
+    width: 120px;
+    height: 120px;
+    bottom: 70px;
+    left: 30px;
+  }
+  
+  .cat-circle-extra {
+    width: 100px;
+    height: 100px;
+    top: 160px;
+    left: 120px;
+  }
+  
+  .cat-circle-extra-2 {
+    width: 140px;
+    height: 140px;
+    top: 250px;
+    right: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cat-wrap {
+    padding: 100px 40px;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  
+  .featured-card {
+    max-width: 250px;
+  }
+  
+  /* Círculos más pequeños en móvil */
+  .cat-wrap::before {
+    width: 100px;
+    height: 100px;
+    top: 30px;
+    right: 30px;
+  }
+  
+  .cat-wrap::after {
+    width: 80px;
+    height: 80px;
+    bottom: 50px;
+    left: 20px;
+  }
+  
+  .cat-circle-extra {
+    width: 70px;
+    height: 70px;
+    top: 140px;
+    left: 80px;
+  }
+  
+  .cat-circle-extra-2 {
+    width: 90px;
+    height: 90px;
+    top: 200px;
+    right: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cat-wrap {
+    padding: 80px 20px;
+  }
+  
+  .cat-wrap h2 {
+    font-size: 1.5rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .featured-card {
+    max-width: 100%;
+  }
+  
+  /* Ocultar algunos círculos en pantallas muy pequeñas */
+  .cat-circle-extra-2 {
+    display: none;
+  }
+  
+  .cat-wrap::before {
+    width: 80px;
+    height: 80px;
+    top: 20px;
+    right: 15px;
+  }
+  
+  .cat-wrap::after {
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    left: 15px;
+  }
+}

@@ -1,0 +1,371 @@
+/* =========================
+   Estilos Generales
+========================= */
+.reparacion-page-container {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* =========================
+   HERO
+========================= */
+.reparacion-hero-section {
+  margin-top: 50px;
+  min-height: 70vh;
+  background: linear-gradient(135deg, #0f172a, #14b8a6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.reparacion-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+.reparacion-hero-content {
+  z-index: 2;
+  padding: 80px 20px;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reparacion-hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-top: 50px;
+  font-weight: 800;
+ 
+  line-height: 1.1;
+  color: #FFFFFF;
+  width: 100%;          /* ocupar todo el ancho */
+  max-width: none;      /* quitar límite de 900px */
+  margin-right: 80px;   /* centrar */
+  white-space: nowrap; 
+}
+
+.reparacion-gradient-text {
+  background: linear-gradient(45deg, #59b6b1, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reparacion-hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  max-width: 700px;
+  margin-top: 60px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.reparacion-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.reparacion-hero-badge:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.reparacion-badge-icon {
+  color: #00c853;
+  font-size: 20px;
+  animation: pulse 2s infinite;
+}
+
+/* Efecto de animación para el icono */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* =========================
+   BENEFICIOS
+========================= */
+.reparacion-benefits-section {
+  padding: 60px 20px;
+  background: #f9fafb;
+}
+
+.reparacion-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.reparacion-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.reparacion-benefit-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.reparacion-benefit-card:hover {
+  transform: translateY(-5px);
+}
+
+.reparacion-benefit-icon {
+  color: #2563eb;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+.reparacion-form-section {
+  background: white;
+  padding: 100px 0;
+}
+
+.reparacion-section-header {
+   text-align: center;
+  margin-bottom: 60px;
+}
+
+.reparacion-section-title {
+ font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.reparacion-section-subtitle {
+  font-size: 1.2rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.reparacion-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f8fafc;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.reparacion-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.reparacion-form-group {
+   display: flex;
+  flex-direction: column;
+}
+
+.reparacion-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.reparacion-input,
+.reparacion-textarea,
+.reparacion-file-input,
+.reparacion-select {
+ padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+  font-family: inherit;
+}
+
+.reparacion-input:focus,
+.reparacion-textarea:focus {
+  border-color: #2563eb;
+}
+
+.reparacion-input-error {
+  border-color: #ef4444 !important;
+}
+
+.reparacion-error-text {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reparacion-error-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Upload */
+.reparacion-upload-container {
+  position: relative;
+}
+
+.reparacion-file-input {
+  display: none;
+}
+
+.reparacion-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  padding: 10px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  color: #475569;
+  cursor: pointer;
+  transition: border 0.3s ease;
+}
+
+.reparacion-upload-label:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.reparacion-upload-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Botón */
+.reparacion-submit-button {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(45deg, #59b6b1, #14b8a6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.reparacion-submit-button:hover {
+ transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(89, 182, 177, 0.3);
+}
+
+.reparacion-button-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+.reparacion-success-container {
+  max-width: 600px;
+  
+  margin-top: 150px;
+  margin-left:260px;
+  background: #f0fdf4;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #bbf7d0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.reparacion-success-icon {
+  color: #22c55e;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 15px;
+}
+
+.reparacion-success-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #166534;
+}
+
+.reparacion-success-message {
+  color: #065f46;
+  margin-top: 10px;
+}
+
+/*mensaje si no ha iniciado sesión*/
+.reparacion-auth-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ef4444;
+  font-size: 1rem;
+  margin-top: 18px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 500;
+}
+
+.reparacion-error-icon {
+  font-size: 18px;
+  color: #ef4444;
+}
+
+.reparacion-login-link {
+  color: #2563eb;
+  text-decoration: underline;
+  margin-left: 8px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.reparacion-login-link:hover {
+  color: #14b8a6;
+}
+
+.reparacion-auth-warning{
+  margin-top:200px;
+  font-size:18px;
+}

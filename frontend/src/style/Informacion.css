@@ -1,0 +1,308 @@
+/* ===== MI INFORMACION - DISEÑO MODERNO ===== */
+
+/* Container principal */
+.informacion-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #fefefe 0%, #eaf5ff 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Container ahora solo controla el ancho y margen interno */
+.mi-informacion-container {
+  max-width: 1300px;
+  width: 100%;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card principal modernizada */
+.mi-informacion-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #f1f5f9;
+  position: relative;
+}
+
+/* Título modernizado */
+.mi-informacion-card h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  background: linear-gradient(90deg, #343a40, #17a2b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Secciones de información */
+.info-section {
+  margin-bottom: 2rem;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Campos de información */
+.info-field {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.info-field:hover {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+/* Labels modernizados */
+.info-field label {
+  width: 120px;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Contenedor de valores */
+.field-value {
+  flex: 1;
+  width: auto;
+}
+
+/* Inputs y spans modernizados */
+.field-value input,
+.field-value span {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+
+.field-value input {
+  border: 2px solid #e2e8f0;
+  background: white;
+}
+
+.field-value input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.field-value input:hover {
+  border-color: #cbd5e1;
+}
+
+.field-value span {
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  display: block;
+  font-weight: 500;
+}
+
+/* Contenedor de botones modernizado */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Botones modernizados */
+.edit-btn, .save-btn, .cancel-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #243A5B, #1b2a40);
+  color: white;
+  border: 1px solid #1b2a40;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(135deg, #1b2a40, #243A5B);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(36, 58, 91, 0.3);
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: white;
+  border: 1px solid #1e7e34;
+}
+
+.save-btn:hover {
+  background: linear-gradient(135deg, #1e7e34, #28a745);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.cancel-btn {
+  background: linear-gradient(135deg, #6c757d, #545b62);
+  color: white;
+  border: 1px solid #545b62;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(135deg, #545b62, #6c757d);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* Estado de carga modernizado */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 1.1rem;
+  color: #64748b;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  margin-top: 2rem;
+}
+
+/* Botón de regreso modernizado */
+.back-to-dashboard {
+  position: relative;  /* quita el absolute */
+  align-self: flex-start; /* lo alinea a la izquierda del contenedor */
+  margin-top: 2rem;   /* separa del card */
+}
+
+
+.back-to-dashboard a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-to-dashboard a:hover {
+  color: #3b82f6;
+  border-color: #3b82f6;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.back-to-dashboard a::before {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .mi-informacion-container {
+    padding: 1rem;
+    margin-top: 120px;
+  }
+  
+  .mi-informacion-card {
+    padding: 1.5rem;
+  }
+  
+  .info-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .info-field label {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+  
+  .field-value input,
+  .field-value span {
+    font-size: 0.9rem;
+    padding: 0.625rem 0.75rem;
+  }
+  
+  .button-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .edit-btn, .save-btn, .cancel-btn {
+    min-width: 100%;
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  .back-to-dashboard {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mi-informacion-container {
+    padding: 0.5rem;
+  }
+  
+  .mi-informacion-card {
+    padding: 1rem;
+  }
+  
+  .mi-informacion-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-section {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-field {
+    padding: 0.75rem;
+  }
+}

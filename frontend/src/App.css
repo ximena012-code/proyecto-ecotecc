@@ -1,0 +1,824 @@
+/* App.css - VERSIÓN CORREGIDA COMPLETA */
+.custom-navbar {
+  width: 100%;
+  background-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.top-bar {
+  background: linear-gradient(90deg, #00b3b3 0%, #00b6b1 30%, #1e3a5f 30%, #1e3a5f 100%);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px; /* menos alto */
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative; /* 🔹 agregado para que funcione bien el ::after */
+}
+
+.top-bar::after {
+  content: '';
+  position: absolute;
+  left: 30%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.social-icons i,
+.top-icons i {
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.top-icons {
+  display: flex;
+  gap: 7px;
+  font-size: 18px;
+}
+
+.top-bar > .left-section > span {
+  color: white;
+  font-weight: bold;
+}
+
+/* MAIN NAVBAR - CORREGIDO */
+.main-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 35px; /* un poco más compacto */
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08); /* sombra más sutil */
+  width: 75%;
+  max-width: 1200px;
+  margin: -5px auto 0;
+  border-radius: 12px;
+  position: relative;
+  z-index: 50;
+  min-height: 55px; /* reducido */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ========== LOGO SECTION ========== */
+.logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ========== NAVIGATION LINKS ========== */
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.nav-links li a.dropdown-toggle {
+  font-weight: 600 !important;
+}
+
+.nav-links li {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #002366;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links li a:hover {
+  color: #00b3b3;
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #00b3b3;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* === Hacer que "Servicios" coincida con Empresa / Blog === */
+.nav-links .dropdown-trigger {
+  font-weight: 600;
+  font-size: 17px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #002366;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-links .dropdown-trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: #00b3b3;
+  transition: width 0.3s ease;
+}
+
+.nav-links .dropdown-trigger:hover {
+  color: #00b3b3;
+}
+
+.nav-links .dropdown-trigger:hover::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #002366;
+}
+
+.account a {
+  color: #002366;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-btn {
+  padding: 6px 12px;
+  background-color: #00b3b3;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100px;
+}
+
+.register-btn:hover {
+  background-color: #008080;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #03466e;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.social-icons a:hover {
+  background-color: #0056b3;
+}
+
+.top-icons a {
+  color: white;
+  transition: color 0.3s; 
+  /* controla la separación entre íconos */
+}
+.top-icons i {
+  vertical-align: middle;
+}
+
+.top-icons a,
+.top-icons i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;   /* mismo alto para todos */
+  width: 24px;
+  font-size: 18px;
+  line-height: 1; /* elimina variación vertical */
+   text-decoration: none !important;
+}
+
+.top-icons .notification-icon {
+  font-size: 18px;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:5px;
+}
+.top-icons a:hover {
+  color: #ffcc00;
+}
+
+.main-content {
+  min-height: 100vh;
+}
+
+/* ========== DROPDOWN STYLES - COMPLETAMENTE NUEVO ========== */
+
+/* Dropdown Container */
+.dropdown-container {
+  position: relative;
+}
+
+/* Dropdown Trigger (ya corregido arriba) */
+
+/* Dropdown Arrow */
+.dropdown-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  margin-left: 3px;
+}
+
+.dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  background-color: white;
+  min-width: 280px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  padding: 15px 0;
+  margin-top: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  overflow-x: auto;
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Badge para notificaciones */
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -7px;
+  background: #f58c0b;
+  color: white;
+  font-size: 8px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  min-width: 18px;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Mostrar dropdown */
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Flecha del dropdown */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 40px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+  z-index: 10000;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: #002366;
+  text-decoration: none;
+  font-weight: 400; /* 👈 CAMBIAR ESTO DE 500 A 400 */
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #00b3b3;
+  border-left-color: #00b3b3;
+  transform: translateX(5px);
+  text-decoration: none;
+}
+
+.dropdown-item i {
+  color: #00b3b3;
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+/* Hover effect for nav links */
+.nav-links li a:hover {
+  color: #00b3b3;
+  transition: color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    min-width: 250px;
+    left: -50px;
+  }
+  
+  .dropdown-menu::before {
+    left: 70px;
+  }
+}
+
+/* ESTILOS PARA SUBMENÚS */
+.dropdown-item-with-submenu {
+  position: relative;
+}
+
+.submenu-trigger {
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  font-weight: 400; /* 👈 AGREGAR ESTA LÍNEA */
+}
+.submenu-trigger:hover {
+  background-color: #f8f9fa;
+  color: #00b3b3;
+}
+
+.submenu-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.submenu-arrow.rotated {
+  transform: rotate(90deg);
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: #f8f9fb;
+  margin-left: 20px;
+  border-radius: 6px;
+  opacity: 0;
+}
+
+.submenu.show {
+  max-height: 300px;
+  opacity: 1;
+  padding: 8px 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  color: #002366;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border-left: 2px solid transparent;
+  margin: 2px 0;
+}
+
+.submenu-item:hover {
+  background-color: #e3f2fd;
+  color: #00b3b3;
+  border-left-color: #00b3b3;
+  text-decoration: none;
+  transform: translateX(3px);
+}
+
+.submenu-item i {
+  color: #00b3b3;
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+}
+
+
+@keyframes slideDownSubmenu {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 300px;
+    opacity: 1;
+  }
+}
+
+.dropdown-menu {
+  min-width: 320px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.dropdown-item-with-submenu:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.dropdown-item:not(.submenu-trigger):hover {
+  background-color: #f8f9fa;
+  color: #00b3b3;
+  border-left-color: #00b3b3;
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    min-width: 280px;
+  }
+  
+  .submenu-item {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -7px;
+  background: red;
+  color: white;
+  font-size: 8px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 4px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Estilo para la sección de horario */
+.schedule {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #eaf6ff;
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 80px;
+}
+
+.schedule i {
+  color: #00b3b3;
+  font-size: 16px;
+}
+
+/* ========== BOTONES MODERNOS ========== */
+.account-btn {
+  background: transparent;
+  color: #002366;
+  border: 1px solid rgba(0, 35, 102, 0.2);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.account-btn:hover {
+  background: transparent;
+  border-color: rgba(0, 179, 179, 0.4);
+  transform: translateY(-1px);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 179, 179, 0.9) 0%,
+    rgba(0, 128, 128, 1) 100%
+  );
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid rgba(108, 117, 125, 0.3);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 0;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(
+    135deg,
+    rgba(108, 117, 125, 0.8) 0%,
+    rgba(108, 117, 125, 1) 100%
+  );
+}
+
+.logout-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 179, 179, 0.1) 0%,
+    rgba(0, 128, 128, 0.15) 100%
+  );
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.logout-btn:hover::before {
+  left: 0;
+}
+
+.logout-btn:hover {
+  border-color: rgba(0, 179, 179, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 179, 179, 0.15);
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 179, 179, 0.9) 0%,
+    rgba(0, 128, 128, 1) 100%
+  );
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-actions > * {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .account-btn,
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    gap: 5px;
+  }
+}
+
+/* 🔍 Overlay completo */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 42, 74, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 📦 Caja blanca del buscador */
+.search-box {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  position: relative;
+  animation: fadeDown 0.3s ease;
+}
+
+/* ❌ Botón cerrar */
+.close-search {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00b3b3;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  color: white;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close-search:hover {
+  background: #008080;
+}
+
+/* 🔎 Formulario */
+.search-modal-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-modal-form input {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.search-modal-form button {
+  background: #00b3b3;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+.search-modal-form button:hover {
+  background: #008080;
+}
+
+@keyframes fadeDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 🔍 Icono en nav */
+.search-toggle {
+  font-size: 18px;
+  cursor: pointer;
+  color: #002366;
+  background-color: #f2f4f8;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.search-toggle:hover {
+  color: #fff;
+  background-color: #00b3b3;
+  transform: scale(1.05);
+}
+
+.search-result {
+  text-align: center;
+  padding: 2rem;
+  color: #002366;
+}
+
+.search-result h3 {
+  margin-bottom: 0.5rem;
+  color: #00b3b3;
+}
+/* SOLUCIÓN COMPLETA - Suavizar TODOS los elementos del dropdown */
+
+/* Hacer que "Vende tu dispositivo" tenga el estilo correcto */
+.dropdown-menu a[href="/servicios/vender-dispositivo"] {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  color: #002366 !important;
+  padding: 12px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: all 0.3s ease !important;
+  border-left: 3px solid transparent !important;
+}
+
+/* Suavizar TODOS los elementos del dropdown principal */
+.dropdown-menu .dropdown-item,
+.dropdown-menu .submenu-trigger {
+  font-weight: 400 !important; /* Quitar negrita */
+  font-size: 16px !important;
+  color: #002366 !important;
+  padding: 12px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: all 0.3s ease !important;
+  border-left: 3px solid transparent !important;
+}
+
+/* Suavizar TODOS los elementos de los submenús (Solicitar reparación, Ver estado, productos, etc.) */
+.submenu-item {
+  font-weight: 400 !important; /* Quitar negrita de submenús */
+  font-size: 14px !important;
+  color: #002366 !important;
+  padding: 8px 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  transition: all 0.3s ease !important;
+  border-left: 2px solid transparent !important;
+  margin: 2px 0 !important;
+}
+
+/* Hover states para todos */
+.dropdown-menu a[href="/servicios/vender-dispositivo"]:hover,
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .submenu-trigger:hover {
+  background-color: #f8f9fa !important;
+  color: #00b3b3 !important;
+  border-left-color: #00b3b3 !important;
+  transform: translateX(5px) !important;
+  text-decoration: none !important;
+}
+
+.submenu-item:hover {
+  background-color: #e3f2fd !important;
+  color: #00b3b3 !important;
+  border-left-color: #00b3b3 !important;
+  transform: translateX(3px) !important;
+  text-decoration: none !important;
+}

@@ -1,0 +1,304 @@
+/* ===== FORMULARIO DE PAGO STRIPE - DISEÑO MODERNO ===== */
+
+#payment-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Elemento de pago de Stripe */
+#payment-element {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#payment-element::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00c4b4, #002366, #00c4b4);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#payment-element:focus-within::before {
+  transform: translateX(0);
+}
+
+#payment-element:focus-within {
+  border-color: #00c4b4;
+  box-shadow: 
+    0 0 0 3px rgba(0, 196, 180, 0.1),
+    0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Botón de pago principal */
+.pay-button {
+  width: 100%;
+  background: linear-gradient(135deg, #00c4b4 0%, #002366 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 6px rgba(0, 35, 102, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.pay-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.pay-button:hover::before {
+  left: 100%;
+}
+
+.pay-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 16px rgba(0, 35, 102, 0.3),
+    0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.pay-button:active {
+  transform: translateY(0);
+  transition-duration: 0.1s;
+}
+
+/* Estado deshabilitado del botón */
+.pay-button:disabled {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
+}
+
+.pay-button:disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pay-button:disabled::before {
+  display: none;
+}
+
+/* Contenido del botón */
+#button-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+/* Spinner de carga */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mensajes de error y estado */
+#payment-message {
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mensaje de error */
+#payment-message.error {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+}
+
+/* Mensaje de éxito */
+#payment-message.success {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  color: #16a34a;
+  border: 1px solid #86efac;
+}
+
+/* Mensaje de procesando */
+#payment-message.processing {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: #1d4ed8;
+  border: 1px solid #93c5fd;
+}
+
+/* Indicadores de seguridad */
+.security-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 12px;
+  background: rgba(0, 196, 180, 0.05);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.security-indicators i {
+  color: #16a34a;
+  font-size: 16px;
+}
+
+.security-indicators span {
+  font-weight: 500;
+}
+
+/* Estados de carga del formulario */
+.payment-form-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.payment-form-loading #payment-element {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #payment-form {
+    max-width: 100%;
+  }
+  
+  #payment-element {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .pay-button {
+    padding: 14px 20px;
+    font-size: 1rem;
+    min-height: 52px;
+  }
+  
+  #payment-message {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .security-indicators {
+    padding: 10px;
+    font-size: 0.8rem;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #payment-element {
+    padding: 14px;
+    border-radius: 10px;
+  }
+  
+  .pay-button {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    min-height: 48px;
+    border-radius: 10px;
+  }
+  
+  #payment-message {
+    padding: 12px 14px;
+    border-radius: 6px;
+  }
+}
+
+/* Animaciones de entrada */
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#payment-form {
+  animation: formFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Efectos de hover suaves */
+#payment-element:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Personalización para elementos de Stripe */
+.StripeElement {
+  background: transparent !important;
+}
+
+.StripeElement--focus {
+  border-color: #00c4b4 !important;
+  box-shadow: 0 0 0 1px #00c4b4 !important;
+}
+
+.StripeElement--invalid {
+  border-color: #ef4444 !important;
+}
+
+.StripeElement--complete {
+  border-color: #16a34a !important;
+}

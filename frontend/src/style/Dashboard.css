@@ -1,0 +1,161 @@
+/* ===== ACCOUNT DASHBOARD REDESIGN ===== */
+
+/* Container principal */
+
+
+.accountdash-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f4fd 100%);
+  padding: 40px 20px 20px;
+  margin-top: 50px;
+}
+
+.accountdash-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header */
+.accountdash-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.accountdash-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 800; 
+  margin-top: 100px;                   
+  margin-bottom: 24px;                 
+  line-height: 1.2;                    
+  background: linear-gradient(90deg, #343a40, #17a2b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}  
+
+.accountdash-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #002366, #00c4b4);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* Grid de Cards */
+.accountdash-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+/* Cards */
+.accountdash-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 25px;
+  box-shadow: 0 10px 30px rgba(0, 35, 102, 0.1);
+  border: 1px solid rgba(0, 196, 180, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+
+.accountdash-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 35, 102, 0.15);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+}
+
+.accountdash-card::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(0, 196, 180, 0.1), rgba(0, 35, 102, 0.05));
+  border-radius: 50%;
+}
+
+/* Icono */
+.accountdash-card-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #002366, #00c4b4);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+.accountdash-card-icon i {
+  font-size: 32px;
+  color: white;
+}
+
+/* Títulos y descripciones */
+.accountdash-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #002366;
+  margin-bottom: 8px;
+}
+
+.accountdash-card-description {
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Botón de logout */
+.accountdash-logout-container {
+  text-align: center;
+  margin-top: 0 !important;
+}
+
+.accountdash-logout-btn {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.accountdash-logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .accountdash-grid {
+    grid-template-columns: 1fr;
+  } 
+  .accountdash-card {
+    height: 200px;
+  }
+}
