@@ -26,8 +26,8 @@ app.post('/api/payments/webhook', express.raw({ type: 'application/json' }), str
 app.use(cors({
   origin: [
     'http://localhost:5173', // Para desarrollo local
-    'https://tu-frontend-nombre.onrender.com', // Tu frontend en Render
-    'http://localhost:3000' // Por si usas Create React App
+    'http://localhost:3000',  // Por si usas Create React App
+    'https://ecotec-frontend.onrender.com' // Tu frontend desplegado (cambiaremos esta URL)
   ],
   credentials: true
 }));

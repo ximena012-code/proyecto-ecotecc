@@ -1,13 +1,8 @@
-import axios from 'axios';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
+  (import.meta.env.PROD 
+    ? 'https://ecotec-backend.onrender.com/api'
+    : 'http://localhost:5000/api');
 
-const API_URL = 'http://localhost:5000/api';
+export const STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
-export const obtenerProductosMasVistos = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/productos/mas-vistos-mes`);
-    return response.data;
-  } catch (error) {
-    console.error('Error al obtener productos más vistos:', error);
-    return [];
-  }
-};
+export default API_BASE_URL;
