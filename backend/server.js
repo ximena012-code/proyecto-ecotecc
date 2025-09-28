@@ -27,7 +27,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173', // Para desarrollo local
     'http://localhost:3000',  // Por si usas Create React App
-    'https://frontend-ecotec.onrender.com' // Tu frontend desplegado
+    'https://proyecto-ecotecc.onrender.com' // Tu frontend desplegado
   ],
   credentials: true
 }));
