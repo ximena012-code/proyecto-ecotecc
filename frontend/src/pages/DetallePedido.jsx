@@ -5,7 +5,7 @@ import ExpandableText from '../components/TextoExpandible';
 import "../style/DetallePedido.css";
 import { Link } from "react-router-dom";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://ecotec-backend.onrender.com";
 
 const Stars = ({ rating }) => {
   const totalStars = 5;

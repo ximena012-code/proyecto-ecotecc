@@ -104,7 +104,7 @@ const SolicitarReparacion = () => {
 
         const token = localStorage.getItem("token");
 
-        const res = await fetch("http://localhost:5000/api/reparaciones", {
+        const res = await fetch("https://ecotec-backend.onrender.com/api/reparaciones", {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${token}`,

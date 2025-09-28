@@ -68,8 +68,8 @@ const Calificaciones = () => {
       try {
         setLoading(true);
         const [statsResponse, summaryResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/api/pedidos/ratings-stats?periodo=${timeFilter}`),
-          axios.get(`http://localhost:5000/api/pedidos/ratings-summary?periodo=${timeFilter}`)
+          axios.get(`https://ecotec-backend.onrender.com/api/pedidos/ratings-stats?periodo=${timeFilter}`),
+          axios.get(`https://ecotec-backend.onrender.com/api/pedidos/ratings-summary?periodo=${timeFilter}`)
         ]);
 
         const processedData = statsResponse.data.map(item => ({

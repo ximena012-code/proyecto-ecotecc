@@ -44,7 +44,7 @@ const Productos = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/productos/categoria/slug/${slug}`
+        `https://ecotec-backend.onrender.com/api/productos/categoria/slug/${slug}`
       );
       const productosConId = response.data.map((producto) => ({
         ...producto,
@@ -86,7 +86,7 @@ const Productos = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/productos/${editProduct.id}`,
+        `https://ecotec-backend.onrender.com/api/productos/${editProduct.id}`,
         {
           nombre: editProduct.nombre,
           descripcion: editProduct.descripcion,
@@ -116,7 +116,7 @@ const Productos = () => {
     const token = localStorage.getItem("token");
     try {
       await axios.delete(
-        `http://localhost:5000/api/productos/${productToDelete}`,
+        `https://ecotec-backend.onrender.com/api/productos/${productToDelete}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       handleCategoryClick(selectedCategory);
@@ -166,7 +166,7 @@ const Productos = () => {
     const token = localStorage.getItem("token");
 
     try {
-      await axios.post("http://localhost:5000/api/productos/add", formData, {
+      await axios.post("https://ecotec-backend.onrender.com/api/productos/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -270,7 +270,7 @@ const Productos = () => {
                           <td>
                             {product.foto ? (
                               <img
-                                src={`http://localhost:5000/uploads/${product.foto}`}
+                                src={`https://ecotec-backend.onrender.com/uploads/${product.foto}`}
                                 alt={product.nombre}
                                 className="productos-photo"
                               />

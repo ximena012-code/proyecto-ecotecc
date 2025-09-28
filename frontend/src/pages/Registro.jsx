@@ -72,7 +72,7 @@ const Registro = () => {
         password: formValues.password
       };
 
-      await axios.post('http://localhost:5000/api/auth/register', userData);
+      await axios.post('https://ecotec-backend.onrender.com/api/auth/register', userData);
 
       setSuccessMessage('¡Registro exitoso! Ahora debes iniciar sesión.');
       setFormValues({ nombre: '', apellido: '', email: '', celular: '', password: '', confirmPassword: '' });

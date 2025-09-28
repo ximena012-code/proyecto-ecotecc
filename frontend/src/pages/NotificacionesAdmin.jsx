@@ -20,7 +20,7 @@ const NotificacionesAdmin = () => {
   const fetchNotificaciones = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/notificaciones', {
+      const response = await axios.get('https://ecotec-backend.onrender.com/api/notificaciones', {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Filtra solo las notificaciones relevantes para admin
@@ -38,7 +38,7 @@ const NotificacionesAdmin = () => {
   const marcarComoLeida = async (idNotificacion) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/notificaciones/${idNotificacion}/leida`, {}, {
+      await axios.put(`https://ecotec-backend.onrender.com/api/notificaciones/${idNotificacion}/leida`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNotificaciones(prev => 
@@ -81,8 +81,8 @@ const NotificacionesAdmin = () => {
         const token = localStorage.getItem('token');
         
         const endpoint = notificacion.dispositivo_id 
-          ? `http://localhost:5000/api/ventas/dispositivo-por-id/${notificacion.dispositivo_id}`
-          : `http://localhost:5000/api/ventas/dispositivo/${notificacion.usuario_solicitante || notificacion.id_usuario}`;
+          ? `https://ecotec-backend.onrender.com/api/ventas/dispositivo-por-id/${notificacion.dispositivo_id}`
+          : `https://ecotec-backend.onrender.com/api/ventas/dispositivo/${notificacion.usuario_solicitante || notificacion.id_usuario}`;
         
         const response = await axios.get(endpoint, {
           headers: { Authorization: `Bearer ${token}` }
@@ -268,7 +268,7 @@ const NotificacionesAdmin = () => {
                       <h4>Imagen del dispositivo</h4>
                       <div className="pieza-imagen-contenedor">
                         <img 
-                          src={`http://localhost:5000/uploads/${dispositivoDetalle.imagen}`} 
+                          src={`https://ecotec-backend.onrender.com/uploads/${dispositivoDetalle.imagen}`} 
                           alt="Dispositivo"
                           className="pieza-dispositivo-imagen"
                         />

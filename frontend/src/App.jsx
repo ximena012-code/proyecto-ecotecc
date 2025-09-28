@@ -77,7 +77,7 @@ const App = () => {
     }
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/notificaciones', {
+      const response = await fetch('https://ecotec-backend.onrender.com/api/notificaciones', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();

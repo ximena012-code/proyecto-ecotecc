@@ -1,5 +1,5 @@
 // src/components/StarRating.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "../style/Estrellas.css";
 
@@ -12,7 +12,7 @@ const Estrellas = ({ idPedido }) => {
   const handleSubmit = async (value) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/pedidos/calificar",
+        "https://ecotec-backend.onrender.com/api/pedidos/calificar",
         { id_pedido: idPedido, puntuacion: value },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );

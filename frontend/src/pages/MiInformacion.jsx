@@ -35,7 +35,7 @@ const MiInformacion = () => {
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/users/profile', {
+      const response = await axios.get('https://ecotec-backend.onrender.com/api/users/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const MiInformacion = () => {
     }
 
     try {
-      await axios.put('http://localhost:5000/api/users/update', editForm, {
+      await axios.put('https://ecotec-backend.onrender.com/api/users/update', editForm, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const MiInformacion = () => {
       });
 
       if (passwords.currentPassword && passwords.newPassword) {
-        await axios.put('http://localhost:5000/api/users/update-password', {
+        await axios.put('https://ecotec-backend.onrender.com/api/users/update-password', {
           currentPassword: passwords.currentPassword,
           newPassword: passwords.newPassword
         }, {

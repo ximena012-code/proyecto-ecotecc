@@ -14,7 +14,7 @@ const EstadoAdminReparacion = () => {
 
   const fetchReparaciones = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/reparaciones");
+      const res = await fetch("https://ecotec-backend.onrender.com/api/reparaciones");
       const data = await res.json();
       setReparaciones(data);
     } catch (error) {
@@ -27,7 +27,7 @@ const EstadoAdminReparacion = () => {
   // Cambiar estado de reparación
   const actualizarEstado = async (id, nuevoEstado) => {
     try {
-      await fetch(`http://localhost:5000/api/reparaciones/${id}/estado`, {
+      await fetch(`https://ecotec-backend.onrender.com/api/reparaciones/${id}/estado`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ estado: nuevoEstado }),

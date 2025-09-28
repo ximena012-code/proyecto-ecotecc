@@ -119,7 +119,7 @@ const VenderDispositivo = () => {
       }
 
       try {
-        await fetch('http://localhost:5000/api/ventas/vender', {
+        await fetch('https://ecotec-backend.onrender.com/api/ventas/vender', {
           method: 'POST',
           body: formDataToSend,
           headers: {

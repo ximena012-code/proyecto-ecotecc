@@ -21,7 +21,7 @@ const CalificacionProductos = ({ pedidoId, onClose, onSuccess }) => {
       const token = localStorage.getItem('token');
       
       // Cargar detalles del pedido
-      const response = await axios.get(`http://localhost:5000/api/pedidos/${pedidoId}/detalle`, {
+      const response = await axios.get(`https://ecotec-backend.onrender.com/api/pedidos/${pedidoId}/detalle`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -30,7 +30,7 @@ const CalificacionProductos = ({ pedidoId, onClose, onSuccess }) => {
         
         // Verificar si ya existen calificaciones de productos para este pedido
         try {
-          const ratingsResponse = await axios.get(`http://localhost:5000/api/pedidos/${pedidoId}/calificaciones-productos`, {
+          const ratingsResponse = await axios.get(`https://ecotec-backend.onrender.com/api/pedidos/${pedidoId}/calificaciones-productos`, {
             headers: { Authorization: `Bearer ${token}` }
           });
 
@@ -120,7 +120,7 @@ const CalificacionProductos = ({ pedidoId, onClose, onSuccess }) => {
       }
 
       // Enviar calificaciones de productos usando la nueva API
-      await axios.post('http://localhost:5000/api/pedidos/calificar-productos', {
+      await axios.post('https://ecotec-backend.onrender.com/api/pedidos/calificar-productos', {
         id_pedido: pedidoId,
         product_ratings: calificacionesValidas
       }, {
@@ -232,7 +232,7 @@ const CalificacionProductos = ({ pedidoId, onClose, onSuccess }) => {
             <div key={producto.producto_id} className="producto-calificacion-item">
               <div className="producto-info">
                 <img 
-                  src={`http://localhost:5000/uploads/${producto.foto}`} 
+                  src={`https://ecotec-backend.onrender.com/uploads/${producto.foto}`} 
                   alt={producto.nombre}
                   className="producto-imagen"
                 />

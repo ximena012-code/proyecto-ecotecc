@@ -16,7 +16,7 @@ const Buscar = () => {
 
   useEffect(() => {
     if (query) {
-      axios.get(`http://localhost:5000/api/productos/buscar?query=${query}`)
+      axios.get(`https://ecotec-backend.onrender.com/api/productos/buscar?query=${query}`)
         .then(res => setResultados(res.data))
         .catch(() => setResultados([]));
     }
@@ -120,7 +120,7 @@ const Buscar = () => {
                 <img
                   src={
                     p.foto
-                      ? `http://localhost:5000/uploads/${p.foto}`
+                      ? `https://ecotec-backend.onrender.com/uploads/${p.foto}`
                       : "/placeholder.png"
                   }
                   alt={p.nombre}

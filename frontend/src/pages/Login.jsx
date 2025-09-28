@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post('https://ecotec-backend.onrender.com/api/auth/login', {
         email: formValues.email,
         password: formValues.password
       });
@@ -80,7 +80,7 @@ const Login = () => {
     setForgotPasswordMessage('');
 
     try {
-      await axios.post('http://localhost:5000/api/auth/forgot-password', {
+      await axios.post('https://ecotec-backend.onrender.com/api/auth/forgot-password', {
         email: forgotPasswordEmail
       });
 

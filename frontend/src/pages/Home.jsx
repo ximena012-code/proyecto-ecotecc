@@ -261,7 +261,7 @@ const Home = () => {
                     
                     <Link to={`/producto/${producto.id_producto}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <img
-                        src={`http://localhost:5000/uploads/${producto.foto}`}
+                        src={`https://ecotec-backend.onrender.com/uploads/${producto.foto}`}
                         className="home-card-img-top"
                         alt={producto.nombre}
                         onError={(e) => {

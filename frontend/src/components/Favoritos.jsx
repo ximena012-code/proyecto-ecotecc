@@ -123,7 +123,7 @@ export default function Favoritos() {
                   src={
                     p.foto
                       ? `${
-                          import.meta.env.VITE_API_URL || "http://localhost:5000"
+                          import.meta.env.VITE_API_URL || "https://ecotec-backend.onrender.com"
                         }/uploads/${p.foto}`
                       : "/placeholder.png"
                   }

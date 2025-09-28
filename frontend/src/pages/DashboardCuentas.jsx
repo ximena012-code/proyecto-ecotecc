@@ -21,7 +21,7 @@ const DashboardCuentas = () => {
   const fetchUsuarios = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/users', {
+      const response = await axios.get('https://ecotec-backend.onrender.com/api/users', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const usuariosData = response.data;
@@ -44,7 +44,7 @@ const DashboardCuentas = () => {
   const fetchTendencia = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/users/tendencia-registros', {
+      const response = await axios.get('https://ecotec-backend.onrender.com/api/users/tendencia-registros', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTendenciaRegistros(response.data);
@@ -56,7 +56,7 @@ const DashboardCuentas = () => {
   const toggleEstadoUsuario = async (id_usuario) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put(`http://localhost:5000/api/users/${id_usuario}/toggle-status`, {}, {
+      const response = await axios.put(`https://ecotec-backend.onrender.com/api/users/${id_usuario}/toggle-status`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

@@ -23,9 +23,9 @@ const DetalleProducto = () => {
   useEffect(() => {
     const fetchProducto = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/productos/id/${id}`);
+        const res = await axios.get(`https://ecotec-backend.onrender.com/api/productos/id/${id}`);
         setProducto(res.data);
-        await axios.post(`http://localhost:5000/api/productos/${id}/vista`);
+        await axios.post(`https://ecotec-backend.onrender.com/api/productos/${id}/vista`);
       } catch (error) {
         console.error('Error al obtener producto o registrar vista:', error);
       }
@@ -33,7 +33,7 @@ const DetalleProducto = () => {
 
     const fetchRating = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/ratings/producto/${id}/promedio`);
+        const res = await axios.get(`https://ecotec-backend.onrender.com/api/ratings/producto/${id}/promedio`);
         if (res.data.success) setRating(res.data);
       } catch (error) {
         console.error('Error al obtener calificaciones:', error);
@@ -129,7 +129,7 @@ const DetalleProducto = () => {
       {/* Columna izquierda */}
       <div className="detalle-columna-izquierda">
         <div className="detalle-imagen-container">
-          <img src={`http://localhost:5000/uploads/${producto.foto}`} alt={producto.nombre} />
+          <img src={`https://ecotec-backend.onrender.com/uploads/${producto.foto}`} alt={producto.nombre} />
         </div>
         <div className="detalle-reviews-below-image">
           <ProductReviews productId={id} className="detalle-reviews" />

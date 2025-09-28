@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/carrito";
+const API_URL = "https://ecotec-backend.onrender.com/api/carrito";
 
 // Helper para obtener el token del localStorage
 const getAuthHeader = () => {

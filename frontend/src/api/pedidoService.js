@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/pedidos";
+const API_URL = "https://ecotec-backend.onrender.com/api/pedidos";
 
 const getAuthHeader = () => {
   const token = localStorage.getItem("token");

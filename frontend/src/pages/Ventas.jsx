@@ -187,8 +187,8 @@ const Ventas = () => {
         const headers = { Authorization: `Bearer ${token}` };
         
         const [ventasResponse, resumenResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/api/ventas/por-periodo?periodo=${timeFilter}`, { headers }),
-          axios.get(`http://localhost:5000/api/ventas/resumen?periodo=${timeFilter}`, { headers })
+          axios.get(`https://ecotec-backend.onrender.com/api/ventas/por-periodo?periodo=${timeFilter}`, { headers }),
+          axios.get(`https://ecotec-backend.onrender.com/api/ventas/resumen?periodo=${timeFilter}`, { headers })
         ]);
 
         setVentasData(ventasResponse.data);

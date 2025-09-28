@@ -60,7 +60,7 @@ const EstadoReparacion = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/reparaciones/ticket/${ticket}`);
+      const res = await fetch(`https://ecotec-backend.onrender.com/api/reparaciones/ticket/${ticket}`);
       const data = await res.json();
 
       if (res.ok) {

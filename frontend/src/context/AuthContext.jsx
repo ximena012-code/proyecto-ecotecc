@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       if (savedUser) {
         setUser(JSON.parse(savedUser));
       } else {
-        fetch("http://localhost:5000/api/users/profile", {
+        fetch("https://ecotec-backend.onrender.com/api/users/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
           .then((res) => {

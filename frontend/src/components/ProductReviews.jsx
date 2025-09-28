@@ -33,7 +33,7 @@ const ProductReviews = ({ productId, className = "" }) => {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/ratings/producto/${productId}?limit=5`);
+      const response = await axios.get(`https://ecotec-backend.onrender.com/api/ratings/producto/${productId}?limit=5`);
       
       if (response.data.success) {
         setRating(response.data.rating);

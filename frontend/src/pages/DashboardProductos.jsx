@@ -26,7 +26,7 @@ const DashboardProductos = () => {
     const fetchStats = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:5000/api/productos/stats', {
+        const response = await axios.get('https://ecotec-backend.onrender.com/api/productos/stats', {
           headers: { Authorization: `Bearer ${token}` }
         });
         
