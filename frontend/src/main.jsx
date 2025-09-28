@@ -74,8 +74,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path="historial-facturas" element={<UserRoute><HistorialFacturas /></UserRoute>} />
                 <Route path="pagar" element={<UserRoute><PaginaPago /></UserRoute>} />
                 <Route path="detalle-pedido" element={<UserRoute><DetallePedido /></UserRoute>} />
-                <Route path="pago-exitoso" element={<PagoExitoso />}/>
-
+<Route path="pago-exitoso" element={<UserRoute><PagoExitoso /></UserRoute>}/>
                 {/* Rutas de administrador */}
                 <Route path="productos" element={<AdminRoute><Productos/></AdminRoute>} />
                 <Route path="dashboardadmi" element={<AdminRoute><Dashboardadmi/></AdminRoute>} />
