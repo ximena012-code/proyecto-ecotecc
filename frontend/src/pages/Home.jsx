@@ -35,6 +35,10 @@ const Home = () => {
 
   const { addItem } = useCart();
 
+  const BACKEND_URL = import.meta.env.PROD 
+  ? 'https://ecotec-backend.onrender.com'
+  : 'http://localhost:5000';
+
   
   // 📌 Manejo de favoritos
   const toggleFavorito = async (productoId) => {
@@ -261,13 +265,14 @@ const Home = () => {
                     
                     <Link to={`/producto/${producto.id_producto}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <img
-                        src={`http://localhost:5000/uploads/${producto.foto}`}
+                        src={`${BACKEND_URL}/uploads/${producto.foto}`}
                         className="home-card-img-top"
                         alt={producto.nombre}
                         onError={(e) => {
-                          e.target.src = '/placeholder-image.png'; // Imagen de respaldo
+                          e.target.src = '/placeholder-image.png';
                         }}
                       />
+                                          
                       
                       <div className="home-card-body">
                         <p className="card-text">{producto.nombre}</p>
