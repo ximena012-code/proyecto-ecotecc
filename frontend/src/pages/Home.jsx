@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { obtenerProductosMasVistos } from '../api/api.js';
+import { obtenerProductosMasVistos } from '../api/api';
 import {
   agregarFavorito,
   eliminarFavorito,
@@ -12,7 +12,6 @@ import logo from "../assets/ecotec1.png";
 import { useCart } from '../context/CartContext';
 import '../style/Home.css';
 
-
 // Importar imágenes
 import img1 from '../image/01 (3).webp';
 import img2 from '../image/imagen20.jpg';
@@ -22,7 +21,6 @@ import img8 from '../image/Tables-SAMSUNG-GALAXY.webp';
 import img10 from '../image/portatil-hp-255.webp';
 import img11 from '../image/img11.png';
 import img12 from '../image/reloj-smart-watch-band-7.webp';
-import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
   const [destacados, setDestacados] = useState([]);
@@ -31,88 +29,45 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   const { addItem } = useCart();
 
-  const BACKEND_URL = import.meta.env.PROD 
-  ? 'https://ecotec-backend.onrender.com'
-  : 'http://localhost:5000';
+  // Cargar datos iniciales
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        // Cargar productos destacados
+        const productos = await obtenerProductosMasVistos();
+        setDestacados(productos);
 
-  
-  // 📌 Manejo de favoritos
-  const toggleFavorito = async (productoId) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      mostrarMensaje("⚠️ Necesitas iniciar sesión antes de guardar un producto en favoritos.");
-      setTimeout(() => navigate("/login"), 3000);
-      return;
-    }
-
-     // 🚨 Bloqueo para administradores
-    if (user?.rol === "admin") {
-      mostrarMensaje("⚠️ Los administradores no pueden agregar productos a favoritos");
-      return;
-    }
-
-     try {
-      if (favoritos.includes(productoId)) {
-        await eliminarFavorito(productoId);
-        setFavoritos(favoritos.filter((id) => id !== productoId));
-        mostrarMensaje("❌ Producto eliminado de favoritos");
-      } else {
-        await agregarFavorito(productoId);
-        setFavoritos([...favoritos, productoId]);
-        mostrarMensaje("✅ Producto agregado a favoritos");
-      }
-    } catch (error) {
-      console.error(error.response?.data?.message || "Error en favoritos");
-      mostrarMensaje("⚠️ Ocurrió un error al actualizar favoritos");
-    }
-  };
-
-// Cargar datos iniciales
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-
-      // Cargar productos destacados
-      const productos = await obtenerProductosMasVistos();
-      console.log("📦 Respuesta API destacados:", productos);
-
-      // Si el backend devuelve { productos: [...] } usamos productos.productos
-      setDestacados(productos.productos || productos);
-
-      // Cargar favoritos solo si hay token
-      const token = localStorage.getItem("token");
-
-      if (token) {
-        try {
-          const favs = await obtenerFavoritos();
-          setFavoritos(favs.data.map((f) => f.id_producto));
-        } catch (favError) {
-          // Si el token está expirado o es inválido, limpiarlo
-          if (
-            favError.response?.status === 403 ||
-            favError.response?.status === 401
-          ) {
-            localStorage.removeItem("token");
-            setFavoritos([]);
+        // Cargar favoritos solo si hay token
+        const token = localStorage.getItem("token");
+        
+        if (token) {
+          try {
+            const favs = await obtenerFavoritos();
+            setFavoritos(favs.data.map((f) => f.id_producto));
+          } catch (favError) {
+            // Si el token está expirado o es inválido, limpiarlo
+            if (favError.response?.status === 403 || favError.response?.status === 401) {
+              localStorage.removeItem("token");
+              setFavoritos([]);
+            }
           }
         }
+        
+      } catch (err) {
+        console.error("❌ Error al cargar destacados:", err);
+        mostrarMensaje("⚠️ Error al cargar los productos");
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.error("❌ Error al cargar destacados:", err);
-      mostrarMensaje("⚠️ Error al cargar los productos");
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  fetchData();
-}, []);
-
+    fetchData();
+  }, []);
 
   // Auto-play del carrusel de productos destacados
   useEffect(() => {
@@ -136,7 +91,39 @@ useEffect(() => {
     }, 3000);
   };
 
+  const toggleFavorito = async (productoId) => {
+    const token = localStorage.getItem("token");
+    
+    if (!token) {
+      mostrarMensaje("⚠️ Necesitas iniciar sesión para guardar favoritos");
+      setTimeout(() => navigate("/login"), 2000);
+      return;
+    }
 
+    try {
+      if (favoritos.includes(productoId)) {
+        await eliminarFavorito(productoId);
+        setFavoritos(favoritos.filter((id) => id !== productoId));
+        mostrarMensaje("❌ Producto eliminado de favoritos");
+      } else {
+        await agregarFavorito(productoId);
+        setFavoritos([...favoritos, productoId]);
+        mostrarMensaje("✅ Producto agregado a favoritos");
+      }
+    } catch (err) {
+      console.error("❌ Error en favoritos:", err);
+      
+      // Manejar errores específicos
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        localStorage.removeItem("token");
+        mostrarMensaje("⚠️ Sesión expirada. Inicia sesión nuevamente");
+        setTimeout(() => navigate("/login"), 2000);
+      } else {
+        const errorMessage = err.response?.data?.message || "Error al actualizar favoritos";
+        mostrarMensaje(`⚠️ ${errorMessage}`);
+      }
+    }
+  };
 
   const handleAgregarCarrito = async (productoId) => {
     const token = localStorage.getItem("token");
@@ -144,12 +131,6 @@ useEffect(() => {
     if (!token) {
       mostrarMensaje("⚠️ Necesitas iniciar sesión para agregar al carrito");
       setTimeout(() => navigate("/login"), 1500);
-      return;
-    }
-
-     // 🚨 Bloqueo para administradores
-    if (user?.rol === "admin") {
-      mostrarMensaje("⚠️ Los administradores no pueden agregar productos al carrito");
       return;
     }
 
@@ -271,14 +252,13 @@ useEffect(() => {
                     
                     <Link to={`/producto/${producto.id_producto}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <img
-                        src={`${BACKEND_URL}/uploads/${producto.foto}`}
+                        src={`https://ecotec-backend.onrender.com/uploads/${producto.foto}`}
                         className="home-card-img-top"
                         alt={producto.nombre}
                         onError={(e) => {
-                          e.target.src = '/placeholder-image.png';
+                          e.target.src = '/placeholder-image.png'; // Imagen de respaldo
                         }}
                       />
-                                          
                       
                       <div className="home-card-body">
                         <p className="card-text">{producto.nombre}</p>
