@@ -69,7 +69,7 @@ export const loginUser = async (req, res) => {
 
     // 🚫 Validar estado del usuario (debe ser 'habilitado' o 'activo')
     if (usuario.estado !== 'habilitado' && usuario.estado !== 'activo') {
-      return res.status(403).json({ message: 'Tu cuenta está inhabilitada. Contacta al administrador.' });
+      return res.status(403).json({ message: 'Tu cuenta está inhabilitada. Contactactanos ecotec35.25@gmail.com.' });
     }
 
     const passwordValida = await bcrypt.compare(password, usuario.password);
