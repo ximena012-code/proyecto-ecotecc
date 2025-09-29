@@ -71,42 +71,48 @@ const Home = () => {
     }
   };
 
-  // Cargar datos iniciales
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        
-        // Cargar productos destacados
-        const productos = await obtenerProductosMasVistos();
-        setDestacados(productos);
+// Cargar datos iniciales
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      setLoading(true);
 
-        // Cargar favoritos solo si hay token
-        const token = localStorage.getItem("token");
-        
-        if (token) {
-          try {
-            const favs = await obtenerFavoritos();
-            setFavoritos(favs.data.map((f) => f.id_producto));
-          } catch (favError) {
-            // Si el token está expirado o es inválido, limpiarlo
-            if (favError.response?.status === 403 || favError.response?.status === 401) {
-              localStorage.removeItem("token");
-              setFavoritos([]);
-            }
+      // Cargar productos destacados
+      const productos = await obtenerProductosMasVistos();
+      console.log("📦 Respuesta API destacados:", productos);
+
+      // Si el backend devuelve { productos: [...] } usamos productos.productos
+      setDestacados(productos.productos || productos);
+
+      // Cargar favoritos solo si hay token
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        try {
+          const favs = await obtenerFavoritos();
+          setFavoritos(favs.data.map((f) => f.id_producto));
+        } catch (favError) {
+          // Si el token está expirado o es inválido, limpiarlo
+          if (
+            favError.response?.status === 403 ||
+            favError.response?.status === 401
+          ) {
+            localStorage.removeItem("token");
+            setFavoritos([]);
           }
         }
-        
-      } catch (err) {
-        console.error("❌ Error al cargar destacados:", err);
-        mostrarMensaje("⚠️ Error al cargar los productos");
-      } finally {
-        setLoading(false);
       }
-    };
+    } catch (err) {
+      console.error("❌ Error al cargar destacados:", err);
+      mostrarMensaje("⚠️ Error al cargar los productos");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
+
 
   // Auto-play del carrusel de productos destacados
   useEffect(() => {
