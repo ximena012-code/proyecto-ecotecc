@@ -113,7 +113,7 @@ export const solicitarReset = async (req, res) => {
     await createPasswordReset(userId, token, expiresAt);
 
     // 4️ Enviar correo con link
-    const resetLink = `http://localhost:5173/reset-password/${token}`;
+    const resetLink = `https://proyecto-ecotecc.onrender.com/reset-password/${token}`;
     await sendResetPasswordEmail(email, resetLink);
 
     res.json({ message: 'Correo de recuperación enviado' });
