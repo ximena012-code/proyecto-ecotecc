@@ -67,6 +67,11 @@ export const loginUser = async (req, res) => {
     if (!usuario) 
       return res.status(401).json({ message: 'Correo o contraseña incorrectos' });
 
+    // 🚫 Validar estado del usuario (debe ser 'habilitado' o 'activo')
+    if (usuario.estado !== 'habilitado' && usuario.estado !== 'activo') {
+      return res.status(403).json({ message: 'Tu cuenta está inhabilitada. Contacta al administrador.' });
+    }
+
     const passwordValida = await bcrypt.compare(password, usuario.password);
     
     if (!passwordValida) 
@@ -74,7 +79,7 @@ export const loginUser = async (req, res) => {
 
     // CAMBIO AQUÍ: Usar id_usuario en lugar de id
     const token = jwt.sign({ 
-      id_usuario: usuario.id_usuario,  // 👈 Cambio de 'id' a 'id_usuario'
+      id_usuario: usuario.id_usuario,  
       email: usuario.email, 
       rol: usuario.rol 
     }, JWT_SECRET, { expiresIn: '1h' });
@@ -151,5 +156,3 @@ export const resetearPassword = async (req, res) => {
     res.status(500).json({ message: 'Error al resetear contraseña' });
   }
 };
-
-

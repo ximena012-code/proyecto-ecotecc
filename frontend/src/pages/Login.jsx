@@ -60,6 +60,8 @@ const Login = () => {
         const message = error.response.data.message;
         if (message === 'Correo o contraseña incorrectos') {
           setErrors({ email: message, password: message });
+        } else if (message === 'Tu cuenta está inhabilitada. Contacta al administrador.') {
+          setErrors({ general: message });
         } else {
           setErrors({ general: 'Error inesperado al iniciar sesión' });
         }
