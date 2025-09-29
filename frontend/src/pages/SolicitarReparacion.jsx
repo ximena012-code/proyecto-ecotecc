@@ -328,8 +328,8 @@ const SolicitarReparacion = () => {
               {isLoading ? "Enviando..." : <><Wrench className="reparacion-button-icon" />Enviar solicitud</>}
             </button>
             {!isAuthenticated && (
-              <div className="reparacion-auth-warning">
-                <AlertCircle className="vender-error-icon" />
+              <div className="reparacion-auth-warning2">
+                <AlertCircle className="vender-error-icon2" />
                 <span>Debes iniciar sesión para enviar la solicitud.</span>
                 <a href="/login" className="vender-login-link">Iniciar sesión</a>
               </div>

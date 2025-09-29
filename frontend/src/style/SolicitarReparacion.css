@@ -335,7 +335,7 @@
 }
 
 /*mensaje si no ha iniciado sesión*/
-.reparacion-auth-warning {
+.reparacion-auth-warning2 {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -368,4 +368,10 @@
 .reparacion-auth-warning{
   margin-top:200px;
   font-size:18px;
+}
+
+.vender-error-icon2{
+  font-size: 18px;
+  color: #ef4444;
+  margin-top:10px;
 }

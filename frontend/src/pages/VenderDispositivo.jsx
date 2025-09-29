@@ -369,8 +369,8 @@ const VenderDispositivo = () => {
             </button>
 
             {!isAuthenticated && (
-              <div className="vender-auth-warning">
-                <AlertCircle className="vender-error-icon" />
+              <div className="vender-auth-warning3">
+                <AlertCircle className="vender-error-icon1" />
                 <span>Debes iniciar sesión para enviar la solicitud.</span>
                 <a href="/login" className="vender-login-link">Iniciar sesión</a>
               </div>
