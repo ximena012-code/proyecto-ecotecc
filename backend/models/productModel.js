@@ -216,11 +216,11 @@ export const registrarVisitaConTiempoModel = async (id) => {
 
 // Obtener productos más vistos del mes
 export const getMasVistosMesModel = async () => {
-  // Primero buscar los más vistos en el último mes
   const [rows] = await db.promise().query(`
     SELECT * 
     FROM productos 
-    WHERE ultima_visita >= NOW() - INTERVAL 1 MONTH
+    WHERE ultima_visita IS NOT NULL
+      AND ultima_visita >= NOW() - INTERVAL 1 MONTH
     ORDER BY visitas DESC 
     LIMIT 6
   `);
@@ -229,7 +229,7 @@ export const getMasVistosMesModel = async () => {
     return rows;
   }
 
-  // Si no hay visitas, devolver los últimos 6 productos registrados
+  // fallback si no hay productos con ultima_visita en el último mes
   const [fallback] = await db.promise().query(`
     SELECT * 
     FROM productos 
@@ -239,6 +239,7 @@ export const getMasVistosMesModel = async () => {
 
   return fallback;
 };
+
 
 // Obtener productos por categoría
 export const getProductsByCategoryModel = async (categoria) => {
