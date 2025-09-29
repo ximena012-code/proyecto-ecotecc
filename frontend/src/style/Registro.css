@@ -282,6 +282,17 @@ body {
   color: #16a34a;
 }
 
+.error-text{
+  padding: 12px 16px;
+  border-radius: var(--radio-borde);
+  text-align: center;
+  font-size: 14px;
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  border: 1px solid #fecaca;
+  color: #dc2626;
+
+}
+
 /* ========================================
    LINK LOGIN
    ======================================== */
