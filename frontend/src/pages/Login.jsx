@@ -60,7 +60,7 @@ const Login = () => {
         const message = error.response.data.message;
         if (message === 'Correo o contraseña incorrectos') {
           setErrors({ email: message, password: message });
-        } else if (message === 'Tu cuenta está inhabilitada. Contacta al administrador.') {
+        } else if (message === 'Tu cuenta está inhabilitada. Contactactanos ecotec35.25@gmail.com.') {
           setErrors({ general: message });
         } else {
           setErrors({ general: 'Error inesperado al iniciar sesión' });
