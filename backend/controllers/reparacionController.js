@@ -1,4 +1,4 @@
-import { sendRepairConfirmationEmail } from '../helpers/mailer.js';
+import { sendRepairConfirmationEmail, sendAdminRepairNotificationEmail }  from '../helpers/mailer.js';
 import { sendRepairStatusUpdateEmail } from '../helpers/mailer.js';
 import { registrarNotificacion } from '../helpers/notificaciones.js';
 import { findAdmin, findUserByEmail } from '../models/userModel.js';

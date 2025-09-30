@@ -236,7 +236,7 @@ export const sendDeviceSaleEmail = async (data) => {
 
   if (data.imagen) {
     try {
-      const imagePath = path.resolve('uploads', data.imagen);
+      const imagePath = path.resolve('/var/data/uploads', data.imagen);
       const imageContent = fs.readFileSync(imagePath).toString('base64');
       
       msg.attachments.push({
