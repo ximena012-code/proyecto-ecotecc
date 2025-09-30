@@ -66,9 +66,16 @@ const DashboardProductos = () => {
     </h2>
 
     <div className="dp-dashboard-cards">
+      {/* TARJETA CORREGIDA */}
       <div className="dp-card">
-        <h4 className="dp-card-title">Inventario Total</h4>
-        <p className="dp-card-total-count">{stats.totalProductos}</p>
+        <h4 className="dp-card-title">Total Unidades en Stock</h4>
+        <p className="dp-card-total-count">{stats.totalUnidades}</p>
+      </div>
+
+      {/* NUEVA TARJETA */}
+      <div className="dp-card">
+        <h4 className="dp-card-title">Productos Diferentes</h4>
+        <p className="dp-card-total-count">{stats.totalTiposProductos}</p>
       </div>
 
       <div className="dp-card">
@@ -87,7 +94,7 @@ const DashboardProductos = () => {
       </div>
 
       <div className="dp-card">
-        <h4 className="dp-card-title">Valor Total del Almacén</h4>
+        <h4 className="dp-card-title">Valor Total del Inventario</h4>
         <p className="dp-card-inventory-value">
           {formatCOP(stats.valorInventario)}
         </p>

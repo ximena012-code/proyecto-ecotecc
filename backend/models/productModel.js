@@ -164,8 +164,12 @@ export const getAllUsers = async () => {
 };
 
 // Obtener estadísticas de productos
+
 export const getProductStatsModel = async () => {
-  const [totalProductos] = await db.promise().query('SELECT SUM(cantidad) as total FROM productos');
+  // CORREGIDO: Renombrado para claridad y se añade la nueva consulta
+  const [totalUnidades] = await db.promise().query('SELECT SUM(cantidad) as total FROM productos');
+  const [totalTiposProductos] = await db.promise().query('SELECT COUNT(*) as total FROM productos'); // NUEVA CONSULTA
+  
   const [stockBajo] = await db.promise().query('SELECT COUNT(*) as bajoStock FROM productos WHERE cantidad < 5');
   const [productoCostoso] = await db.promise().query('SELECT nombre, precio FROM productos ORDER BY precio DESC LIMIT 1');
   const [valorInventario] = await db.promise().query('SELECT SUM(cantidad * precio) as totalValor FROM productos');
@@ -178,8 +182,10 @@ export const getProductStatsModel = async () => {
     GROUP BY categoria
   `);
 
+  // CORREGIDO: Se devuelven ambos totales con nombres claros
   return {
-    totalProductos: totalProductos[0],
+    totalUnidades: totalUnidades[0],
+    totalTiposProductos: totalTiposProductos[0],
     stockBajo: stockBajo[0],
     productoCostoso: productoCostoso[0],
     valorInventario: valorInventario[0],

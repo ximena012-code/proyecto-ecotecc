@@ -211,9 +211,10 @@ export const getProductStats = async (req, res) => {
   try {
     const stats = await getProductStatsModel();
 
-    // Responder con todos los datos organizados
+    // CORREGIDO: Se envían los nuevos campos con nombres claros
     res.json({
-      totalProductos: stats.totalProductos.total,
+      totalUnidades: stats.totalUnidades.total,
+      totalTiposProductos: stats.totalTiposProductos.total,
       stockBajo: stats.stockBajo.bajoStock,
       productoCostoso: stats.productoCostoso,
       valorInventario: stats.valorInventario.totalValor,
@@ -225,6 +226,7 @@ export const getProductStats = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener estadísticas de productos' });
   }
 };
+
 
 //Consultar productos reacondicionados
 export const getReacondicionados = async (req, res) => {
