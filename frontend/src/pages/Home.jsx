@@ -21,6 +21,7 @@ import img8 from '../image/Tables-SAMSUNG-GALAXY.webp';
 import img10 from '../image/portatil-hp-255.webp';
 import img11 from '../image/img11.png';
 import img12 from '../image/reloj-smart-watch-band-7.webp';
+import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
   const [destacados, setDestacados] = useState([]);
@@ -29,6 +30,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
+  const { user } = useAuth();
+
 
   const { addItem } = useCart();
 
@@ -133,6 +136,13 @@ const Home = () => {
       setTimeout(() => navigate("/login"), 1500);
       return;
     }
+
+       // 🚨 Bloqueo para administradores
+    if (user?.rol === "admin") {
+      mostrarMensaje("⚠ Los administradores no pueden agregar productos al carrito");
+      return;
+    }
+
 
     try {
       await addItem(productoId, 1);

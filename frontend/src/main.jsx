@@ -61,7 +61,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path="estado-reparacion" element={<EstadoAdminReparacion />} />
                 <Route path="productos/:slug" element={<CategoriaPage />} />
                 <Route path="/producto/:id" element={<DetalleProducto />} /> 
-                <Route path="carrito" element={<Carrito />} />
+                <Route path="carrito" element={<UserRoute><Carrito /></UserRoute>} />
                 <Route path="pedido" element={<Pedido />} />
                 
                 {/* Notificaciones - Accesible para usuarios autenticados */}
