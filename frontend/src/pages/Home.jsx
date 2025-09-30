@@ -103,6 +103,13 @@ const Home = () => {
       return;
     }
 
+        // 🚨 Bloqueo para administradores
+    if (user?.rol === "admin") {
+      mostrarMensaje("⚠️  Los administradores no pueden agregar productos a favoritos");
+      return;
+    }
+
+
     try {
       if (favoritos.includes(productoId)) {
         await eliminarFavorito(productoId);
@@ -139,7 +146,7 @@ const Home = () => {
 
        // 🚨 Bloqueo para administradores
     if (user?.rol === "admin") {
-      mostrarMensaje("⚠ Los administradores no pueden agregar productos al carrito");
+      mostrarMensaje("⚠️ Los administradores no pueden agregar productos al carrito");
       return;
     }
 
