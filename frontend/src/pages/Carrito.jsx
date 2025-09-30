@@ -61,7 +61,7 @@ const Carrito = () => {
                 {/* Izquierda */}
                 <div className="carritoX-izquierda">
                   <img
-                    src={item.foto}
+                    src={`https://ecotec-backend.onrender.com/uploads/${item.foto}`}
                     alt={item.nombre}
                     className="carritoX-item-img"
                   />
