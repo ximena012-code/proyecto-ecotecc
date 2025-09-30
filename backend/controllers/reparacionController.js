@@ -15,44 +15,56 @@ import {
 } from '../models/reparacionModel.js';
 
 // ✅ Crear reparación con ticket incremental
+
 export const crearReparacion = async (req, res) => {
   const { nombre, dispositivo, marca, modelo, problema } = req.body;
   const imagen = req.file ? req.file.filename : null;
-  const emailUsuario = req.user.email;
+  const emailUsuario = req.user.email; // Email del usuario que hace la solicitud
   const idUsuario = req.user.id_usuario;
 
   try {
-    // Crear reparación
+    // Crear la reparación en la base de datos
     const result = await createReparation({
       nombre,
-      contacto: emailUsuario,
+      contacto: emailUsuario, // Usamos el email del usuario logueado como contacto
       dispositivo,
       marca,
       modelo,
       problema,
-      imagen
+      imagen,
     });
 
-    // Generar ticket basado en el id insertado
+    // Generar el ticket y actualizarlo
     const ticket = "TCK-" + String(result.insertId).padStart(6, "0");
-
-    // Actualizar ticket
     await updateReparationTicket(result.insertId, ticket);
 
-    // Enviar correo solo al email del usuario autenticado
+    // --- NOTIFICACIONES POR CORREO ---
+
+    // 1. Enviar correo de confirmación AL CLIENTE (esto ya lo tenías)
     await sendRepairConfirmationEmail(emailUsuario, ticket);
 
-    // ⭐ CAMBIO: Registrar notificación para el administrador, no para el usuario
-    const admin = await findAdmin();
+    // 2. ¡NUEVO! Enviar correo de notificación AL ADMINISTRADOR
+    await sendAdminRepairNotificationEmail({
+      ticket,
+      nombre,
+      emailUsuario,
+      dispositivo,
+      marca,
+      modelo,
+      problema,
+      imagen,
+    });
 
+    // --- NOTIFICACIÓN EN LA PLATAFORMA (esto ya lo tenías) ---
+    const admin = await findAdmin();
     if (admin) {
       await registrarNotificacion({
-        id_usuario: admin.id_usuario, // ⭐ Para el admin
-        tipo: 'reparacion',
-        mensaje: `Nueva solicitud de reparación de ${nombre}. Dispositivo: ${dispositivo} ${marca} ${modelo}. Ticket: ${ticket}`,
+        id_usuario: admin.id_usuario,
+        tipo: "reparacion",
+        mensaje: `Nueva solicitud de reparación de ${nombre}. Ticket: ${ticket}`,
         fecha: new Date(),
         ticket_id: result.insertId,
-        usuario_solicitante: idUsuario // ⭐ Referencia al usuario que solicitó
+        usuario_solicitante: idUsuario,
       });
     }
 
@@ -66,6 +78,7 @@ export const crearReparacion = async (req, res) => {
     res.status(500).json({ error: "Error guardando reparación" });
   }
 };
+
 
 // ✅ Obtener todas las reparaciones
 export const obtenerReparaciones = async (req, res) => {

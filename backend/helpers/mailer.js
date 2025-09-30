@@ -66,13 +66,13 @@ export const sendRepairConfirmationEmail = async (to, ticket) => {
     html: `
       <div style="background: linear-gradient(135deg, #e0f7fa 0%, #f9f9f9 100%); font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; border-radius: 18px; box-shadow: 0 4px 24px rgba(3,70,110,0.08); overflow: hidden;">
         <div style="background: #03466e; padding: 32px 0 16px 0; text-align: center;">
-          <img src="https://img.icons8.com/color/96/000000/maintenance.png" alt="EcoTec" style="width: 64px; margin-bottom: 8px;" />
+            <span style="font-size: 48px;">🧑‍🔧</span>
           <h2 style="color: #fff; margin: 0; font-size: 2rem; letter-spacing: 2px;">EcoTec</h2>
           <p style="color: #b3e5fc; margin: 8px 0 0 0; font-size: 1.1rem;">¡Gracias por confiar en nosotros!</p>
         </div>
         <div style="padding: 32px 24px 24px 24px; background: #fff;">
           <div style="text-align: center;">
-            <span style="font-size: 48px;">🔧</span>
+            <span style="font-size: 48px;">⚙️</span>
             <h3 style="color: #03466e; margin: 16px 0 8px 0; font-size: 1.5rem;">Solicitud de reparación recibida</h3>
           </div>
           <p style="font-size: 17px; color: #333; margin-bottom: 18px; text-align: center;">Hemos recibido tu <b>solicitud de reparación</b> correctamente.</p>
@@ -182,7 +182,7 @@ export const sendDeviceSaleEmail = async (data) => {
     html: `
       <div style="background: linear-gradient(135deg, #e0f7fa 0%, #f9f9f9 100%); font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; border-radius: 18px; box-shadow: 0 4px 24px rgba(3,70,110,0.08); overflow: hidden;">
         <div style="background: #03466e; padding: 32px 0 16px 0; text-align: center;">
-          <img src="https://img.icons8.com/color/96/000000/sell.png" alt="EcoTec" style="width: 64px; margin-bottom: 8px;" />
+          <span style="font-size: 48px;">💰</span>
           <h2 style="color: #fff; margin: 0; font-size: 2rem; letter-spacing: 2px;">EcoTec</h2>
           <p style="color: #b3e5fc; margin: 8px 0 0 0; font-size: 1.1rem;">Nueva Solicitud de Venta</p>
         </div>
@@ -254,6 +254,84 @@ export const sendDeviceSaleEmail = async (data) => {
   try {
     await sgMail.send(msg);
     console.log('✅ Correo de venta de dispositivo enviado correctamente al admin.');
+  } catch (error) {
+    handleSendError(error, FROM_EMAIL);
+  }
+};
+
+// AÑADE ESTA NUEVA FUNCIÓN AL FINAL DE TU ARCHIVO mailer.js
+
+export const sendAdminRepairNotificationEmail = async (data) => {
+  const msg = {
+    to: FROM_EMAIL, // Se envía al correo del administrador configurado en .env
+    from: FROM_EMAIL,
+    replyTo: data.emailUsuario, // Para que el admin pueda responder directamente al cliente
+    subject: `❗ Nueva Solicitud de Reparación - Ticket #${data.ticket}`,
+    html: `
+      <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; border-radius: 18px; box-shadow: 0 4px 24px rgba(3,70,110,0.08); overflow: hidden;">
+        <div style="background: #03466e; padding: 32px 0 16px 0; text-align: center;">
+          <span style="font-size: 48px;">🔧</span>
+          <h2 style="color: #fff; margin: 0; font-size: 2rem; letter-spacing: 2px;">EcoTec</h2>
+          <p style="color: #b3e5fc; margin: 8px 0 0 0; font-size: 1.1rem;">Nueva Solicitud de Reparación</p>
+        </div>
+        <div style="padding: 32px 24px 24px 24px; background: #fff;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h3 style="color: #03466e; margin: 16px 0 8px 0; font-size: 1.5rem;">Ticket de Reparación: #${data.ticket}</h3>
+          </div>
+          
+          <div style="background: #e8f4ff; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+            <h4 style="color: #03466e; margin: 0 0 12px 0; font-size: 1.1rem;">👤 Información del Usuario</h4>
+            <p style="margin: 8px 0; color: #333; font-size: 15px;"><strong>Nombre:</strong> ${data.nombre}</p>
+            <p style="margin: 8px 0; color: #333; font-size: 15px;"><strong>Email de Contacto:</strong> <a href="mailto:${data.emailUsuario}" style="color: #03466e;">${data.emailUsuario}</a></p>
+          </div>
+
+          <div style="background: #fff8e6; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+            <h4 style="color: #b38600; margin: 0 0 12px 0; font-size: 1.1rem;">📱 Detalles del Dispositivo</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <p style="margin: 8px 0; color: #333; font-size: 15px;"><strong>Dispositivo:</strong> ${data.dispositivo}</p>
+              <p style="margin: 8px 0; color: #333; font-size: 15px;"><strong>Marca:</strong> ${data.marca}</p>
+              <p style="margin: 8px 0; color: #333; font-size: 15px;"><strong>Modelo:</strong> ${data.modelo}</p>
+            </div>
+          </div>
+          
+          <div style="background: #f0f7ff; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+            <h4 style="color: #1565c0; margin: 0 0 12px 0; font-size: 1.1rem;">📝 Problema Reportado</h4>
+            <p style="margin: 0; color: #333; line-height: 1.6; font-style: italic; font-size: 15px;">"${data.problema}"</p>
+          </div>
+
+          ${data.imagen ? `<div style="text-align: center;"><h4 style="color: #666;">📷 Imagen Adjunta</h4><img src="cid:deviceImage" alt="Imagen del dispositivo" style="max-width: 80%; border-radius: 8px; border: 1px solid #ddd;"></div>` : ''}
+
+          <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <p style="margin: 0 0 10px; font-weight: bold;">Acciones Rápidas:</p>
+            <a href="https://proyecto-ecotecc.onrender.com/estado-reparacion" target="_blank" style="background: #03466e; color: #fff; text-decoration: none; padding: 12px 25px; border-radius: 8px; font-size: 16px;">Gestionar Reparaciones</a>
+          </div>
+        </div>
+      </div>
+    `,
+    attachments: []
+  };
+
+  // Adjuntar imagen si existe
+  if (data.imagen) {
+    try {
+      const imagePath = path.resolve('uploads', data.imagen);
+      const imageContent = fs.readFileSync(imagePath).toString('base64');
+      
+      msg.attachments.push({
+        content: imageContent,
+        filename: data.imagen,
+        type: 'image/jpeg',
+        disposition: 'inline',
+        content_id: 'deviceImage'
+      });
+    } catch (fileError) {
+        console.error(`❌ No se pudo encontrar o leer el archivo adjunto: ${data.imagen}`, fileError);
+    }
+  }
+
+  try {
+    await sgMail.send(msg);
+    console.log(`✅ Correo de nueva reparación enviado al administrador.`);
   } catch (error) {
     handleSendError(error, FROM_EMAIL);
   }
