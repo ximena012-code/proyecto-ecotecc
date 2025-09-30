@@ -4,10 +4,10 @@ import db from '../config/db.js';
 export const getCartByUserId = async (userId) => {
   const [rows] = await db.promise().query(
     `SELECT c.id_carrito, c.cantidad,
-            p.id_producto, p.nombre, p.precio,
-            CONCAT('http://localhost:5000/uploads/', p.foto) AS foto,
-            (c.cantidad * p.precio) as subtotal
-     FROM carrito c
+        p.id_producto, p.nombre, p.precio,
+        p.foto,                                                
+        (c.cantidad * p.precio) as subtotal
+    FROM carrito c
      JOIN productos p ON c.id_producto = p.id_producto
      WHERE c.id_usuario = ?
      ORDER BY c.id_carrito DESC`,
