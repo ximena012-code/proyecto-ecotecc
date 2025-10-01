@@ -228,10 +228,11 @@ const Pedido = () => {
             {cart && cart.length > 0 ? cart.map((item) => (
               <div key={item.id_carrito} className="checkout-producto-item">
                 <img 
-                  src={item.foto || "/api/placeholder/60/45"} 
+                  src={`https://ecotec-backend.onrender.com/uploads/${item.foto}`}
                   alt={item.nombre}
                   className="checkout-producto-imagen"
                 />
+
                 <div className="checkout-producto-info">
                   <p className="checkout-producto-nombre">
                     {item.nombre}
