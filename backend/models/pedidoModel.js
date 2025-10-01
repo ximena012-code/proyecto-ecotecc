@@ -434,23 +434,29 @@ export const getUserOrderDetailsModel = async (userId) => {
 };
 
 // Obtener estadísticas de calificaciones por periodo
+
 export const getRatingsStatsModel = async (periodo) => {
   let query = '';
+  const fromClause = `
+    FROM (
+      SELECT puntuacion, fecha_calificacion FROM calificaciones_pedidos
+      UNION ALL
+      SELECT puntuacion, fecha_calificacion FROM calificaciones_productos
+    ) as todas_calificaciones
+  `;
 
   switch (periodo) {
     case 'dia':
       query = `
         SELECT 
-          HOUR(fecha_calificacion) as periodo,
+          -- Corregido: Genera una clave de periodo completa y sin ambigüedad.
+          CONCAT(YEAR(fecha_calificacion), '-', MONTH(fecha_calificacion), '-', DAY(fecha_calificacion), '-', HOUR(fecha_calificacion)) as periodo,
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
-        FROM (
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_pedidos
-          UNION ALL
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_productos
-        ) as todas_calificaciones
-        WHERE DATE(fecha_calificacion) = CURDATE()
-        GROUP BY HOUR(fecha_calificacion)
+        ${fromClause}
+        -- Corregido: Filtra por las últimas 24 horas.
+        WHERE fecha_calificacion >= NOW() - INTERVAL 24 HOUR
+        GROUP BY periodo
         ORDER BY periodo`;
       break;
 
@@ -460,13 +466,10 @@ export const getRatingsStatsModel = async (periodo) => {
           DATE_FORMAT(fecha_calificacion, '%Y-%m-%d') as periodo,
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
-        FROM (
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_pedidos
-          UNION ALL
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_productos
-        ) as todas_calificaciones
-        WHERE fecha_calificacion >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
-        GROUP BY DATE_FORMAT(fecha_calificacion, '%Y-%m-%d')
+        ${fromClause}
+        -- Corregido: Filtra por los últimos 7 días.
+        WHERE fecha_calificacion >= NOW() - INTERVAL 7 DAY
+        GROUP BY periodo
         ORDER BY periodo`;
       break;
 
@@ -476,13 +479,10 @@ export const getRatingsStatsModel = async (periodo) => {
           DATE_FORMAT(fecha_calificacion, '%Y-%m-%d') as periodo,
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
-        FROM (
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_pedidos
-          UNION ALL
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_productos
-        ) as todas_calificaciones
-        WHERE fecha_calificacion >= DATE_SUB(CURDATE(), INTERVAL 29 DAY)
-        GROUP BY DATE_FORMAT(fecha_calificacion, '%Y-%m-%d')
+        ${fromClause}
+        -- Corregido: Filtra por los últimos 30 días.
+        WHERE fecha_calificacion >= NOW() - INTERVAL 30 DAY
+        GROUP BY periodo
         ORDER BY periodo`;
       break;
 
@@ -492,13 +492,10 @@ export const getRatingsStatsModel = async (periodo) => {
           DATE_FORMAT(fecha_calificacion, '%Y-%m') as periodo,
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
-        FROM (
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_pedidos
-          UNION ALL
-          SELECT puntuacion, fecha_calificacion FROM calificaciones_productos
-        ) as todas_calificaciones
-        WHERE fecha_calificacion >= DATE_SUB(CURDATE(), INTERVAL 11 MONTH)
-        GROUP BY DATE_FORMAT(fecha_calificacion, '%Y-%m')
+        ${fromClause}
+        -- Corregido: Filtra por los últimos 12 meses.
+        WHERE fecha_calificacion >= NOW() - INTERVAL 12 MONTH
+        GROUP BY periodo
         ORDER BY periodo`;
       break;
 
