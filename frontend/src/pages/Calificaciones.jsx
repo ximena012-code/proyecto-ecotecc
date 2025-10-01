@@ -99,17 +99,37 @@ const Calificaciones = () => {
     // eslint-disable-next-line
   }, [timeFilter]);
 
-  const formatPeriod = (periodo, filter) => {
-    // Mantén la lógica igual, pero asegúrate que coincida con los labels generados
-    if (filter === 'dia') return `${periodo}:00`;
+ const formatPeriod = (periodo, filter) => {
+    // Si el periodo es inválido, no hagas nada.
+    if (!periodo) return '';
+
+    // Convertimos el 'periodo' que viene del backend a un objeto Date.
     const date = new Date(periodo);
+
+    // Si la fecha no es válida, devolvemos un string vacío.
+    if (isNaN(date.getTime())) {
+      return '';
+    }
+
+    // AHORA SÍ, formateamos según el filtro.
     switch (filter) {
+      case 'dia':
+        // Extrae la hora y la formatea como "HH:00".
+        const hour = date.getHours();
+        return `${String(hour).padStart(2, '0')}:00`;
+      
       case 'semana':
         return date.toLocaleDateString('es-ES', { weekday: 'short', day: '2-digit', month: '2-digit' });
+      
       case 'mes':
         return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
+      
       case 'año':
-        return date.toLocaleDateString('es-ES', { month: 'short', year: '2-digit' });
+        // Para 'año', el backend envía 'YYYY-MM', necesitamos ajustarlo para que Date lo entienda.
+        { const [year, month] = String(periodo).split('-');
+        const yearDate = new Date(year, month - 1);
+        return yearDate.toLocaleDateString('es-ES', { month: 'short', year: '2-digit' }); }
+      
       default:
         return periodo;
     }
