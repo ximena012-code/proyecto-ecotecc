@@ -449,12 +449,12 @@ export const getRatingsStatsModel = async (periodo) => {
     case 'dia':
       query = `
         SELECT 
-          -- Corregido: Genera una clave de periodo completa y sin ambigüedad.
-          CONCAT(YEAR(fecha_calificacion), '-', MONTH(fecha_calificacion), '-', DAY(fecha_calificacion), '-', HOUR(fecha_calificacion)) as periodo,
+          -- Corregido: Genera una clave de fecha y hora completa para que no haya ambigüedad.
+          DATE_FORMAT(fecha_calificacion, '%Y-%m-%d %H:00:00') as periodo,
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
         ${fromClause}
-        -- Corregido: Filtra por las últimas 24 horas.
+        -- Corregido: Filtra por las últimas 24 horas exactas.
         WHERE fecha_calificacion >= NOW() - INTERVAL 24 HOUR
         GROUP BY periodo
         ORDER BY periodo`;
@@ -463,11 +463,12 @@ export const getRatingsStatsModel = async (periodo) => {
     case 'semana':
       query = `
         SELECT 
+          -- Corregido: Asegura un formato de fecha consistente.
           DATE_FORMAT(fecha_calificacion, '%Y-%m-%d') as periodo,
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
         ${fromClause}
-        -- Corregido: Filtra por los últimos 7 días.
+        -- Corregido: Filtra por los últimos 7 días exactos.
         WHERE fecha_calificacion >= NOW() - INTERVAL 7 DAY
         GROUP BY periodo
         ORDER BY periodo`;
@@ -480,7 +481,7 @@ export const getRatingsStatsModel = async (periodo) => {
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
         ${fromClause}
-        -- Corregido: Filtra por los últimos 30 días.
+        -- Corregido: Filtra por los últimos 30 días exactos.
         WHERE fecha_calificacion >= NOW() - INTERVAL 30 DAY
         GROUP BY periodo
         ORDER BY periodo`;
@@ -489,11 +490,12 @@ export const getRatingsStatsModel = async (periodo) => {
     case 'año':
       query = `
         SELECT 
+          -- Corregido: Asegura un formato de mes y año consistente.
           DATE_FORMAT(fecha_calificacion, '%Y-%m') as periodo,
           AVG(puntuacion) as avgRating,
           COUNT(*) as count
         ${fromClause}
-        -- Corregido: Filtra por los últimos 12 meses.
+        -- Corregido: Filtra por los últimos 12 meses exactos.
         WHERE fecha_calificacion >= NOW() - INTERVAL 12 MONTH
         GROUP BY periodo
         ORDER BY periodo`;
@@ -504,7 +506,7 @@ export const getRatingsStatsModel = async (periodo) => {
   }
 
   const [rows] = await db.promise().query(query);
-  return rows;
+  return rows;
 };
 
 // Obtener resumen de calificaciones por periodo
