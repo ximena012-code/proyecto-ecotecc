@@ -251,7 +251,7 @@ const App = () => {
                   
                   <div className={`submenu ${openSubmenu === 'productos' ? 'show' : ''}`}>
                     <Link to="/productos/celulares" className="submenu-item">
-                      <i className="bi bi-headphones"></i>
+                      <i className="bi bi-tablet"></i>
                       Celulares
                     </Link>
                     <Link to="/productos/portatiles" className="submenu-item">
