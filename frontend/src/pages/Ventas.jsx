@@ -108,35 +108,44 @@ const Ventas = () => {
 
   // Normaliza la clave de periodo según el filtro
   const normalizePeriodoKey = (periodo, filter) => {
-    if (!periodo) return null;
-    switch (filter) {
-      case 'dia':
-        // Si ya viene en formato año-mes-día-hora, úsalo tal cual
-        if (typeof periodo === 'string' && /^\d{4}-\d{1,2}-\d{1,2}-\d{1,2}$/.test(periodo)) {
-          return periodo;
-        }
-        // Si solo es la hora, anteponer la fecha actual (mes desde 1)
-        return `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}-${periodo}`;
-      case 'semana':
-      case 'mes':
-        // periodo es la fecha (ej: 2024-06-10)
-        try {
-          const d = typeof periodo === 'string' ? parseISO(periodo) : periodo;
-          return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-        } catch {
-          return periodo;
-        }
-      case 'año':
-        // periodo es el mes (ej: 2024-06)
-        if (typeof periodo === 'string' && /^\d{4}-\d{1,2}$/.test(periodo)) {
-          const [year, month] = periodo.split('-');
-          return `${year}-${parseInt(month)}`;
-        }
-        return periodo;
-      default:
-        return periodo;
-    }
-  };
+   if (!periodo) return null;
+   switch (filter) {
+     case 'dia': {
+       // Si ya viene en formato año-mes-día-hora, úsalo tal cual
+       if (typeof periodo === 'string' && /^\d{4}-\d{1,2}-\d{1,2}-\d{1,2}$/.test(periodo)) {
+         return periodo;
+       }
+       
+       // Lógica corregida para determinar si la hora es de hoy o de ayer
+       const now = new Date();
+       const currentHour = now.getHours();
+       const periodoHour = parseInt(periodo, 10);
+       
+       // Si la hora del periodo es mayor que la hora actual, asumimos que es de ayer
+       const targetDate = periodoHour > currentHour ? subDays(now, 1) : now;
+       
+       return `${targetDate.getFullYear()}-${targetDate.getMonth() + 1}-${targetDate.getDate()}-${periodoHour}`;
+     }
+     case 'semana':
+     case 'mes':
+       // periodo es la fecha (ej: 2024-06-10)
+       try {
+         const d = typeof periodo === 'string' ? parseISO(periodo) : periodo;
+         return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+       } catch {
+         return periodo;
+       }
+     case 'año':
+       // periodo es el mes (ej: 2024-06)
+       if (typeof periodo === 'string' && /^\d{4}-\d{1,2}$/.test(periodo)) {
+         const [year, month] = periodo.split('-');
+         return `${year}-${parseInt(month)}`;
+       }
+       return periodo;
+     default:
+       return periodo;
+   }
+ };
 
   // Combinar datos reales con períodos completos
   const processedData = useMemo(() => {
