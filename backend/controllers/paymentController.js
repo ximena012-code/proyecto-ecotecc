@@ -95,9 +95,9 @@ export const stripeWebhook = async (req, res) => {
       }
 
       // 2. Actualizar el stock
-      for (const item of pedidoCompleto.detalles) {
-        await updateProductStock(item.id_producto, item.cantidad);
-      }
+for (const item of pedidoCompleto.detalles) {
+  await updateProductStock(item.producto_id, item.cantidad);
+}
       console.log(`📦 Stock actualizado para el pedido ${pedidoId}`);
 
       // 3. Crear el mensaje de resumen para la notificación
