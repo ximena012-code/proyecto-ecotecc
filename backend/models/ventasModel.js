@@ -1,6 +1,7 @@
 import db from '../config/db.js';
 
 // Obtener ventas por periodo
+
 export const getVentasPorPeriodo = async (periodo) => {
   let query = '';
   
@@ -8,6 +9,7 @@ export const getVentasPorPeriodo = async (periodo) => {
     case 'dia':
       query = `
         SELECT 
+          -- La clave ya se genera correctamente, no hay que cambiarla.
           CONCAT(YEAR(fecha_pedido), '-', MONTH(fecha_pedido), '-', DAY(fecha_pedido), '-', HOUR(fecha_pedido)) as periodo,
           SUM(total) as ventas,
           SUM(
@@ -17,7 +19,8 @@ export const getVentasPorPeriodo = async (periodo) => {
           ) as cantidad
         FROM pedidos
         WHERE 
-          DATE(fecha_pedido) = CURDATE()
+          -- Corregido: Obtiene datos de las últimas 24 horas desde este momento.
+          fecha_pedido >= NOW() - INTERVAL 24 HOUR
           AND estado = 'pagado'
         GROUP BY periodo
         ORDER BY periodo;
@@ -36,7 +39,8 @@ export const getVentasPorPeriodo = async (periodo) => {
           ) as cantidad
         FROM pedidos
         WHERE 
-          fecha_pedido >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+          -- Corregido: Obtiene datos de los últimos 7 días.
+          fecha_pedido >= NOW() - INTERVAL 7 DAY
           AND estado = 'pagado'
         GROUP BY DATE(fecha_pedido)
         ORDER BY periodo;
@@ -55,8 +59,8 @@ export const getVentasPorPeriodo = async (periodo) => {
           ) as cantidad
         FROM pedidos
         WHERE 
-          YEAR(fecha_pedido) = YEAR(CURDATE()) 
-          AND MONTH(fecha_pedido) = MONTH(CURDATE())
+          -- Corregido: Obtiene datos de los últimos 30 días.
+          fecha_pedido >= NOW() - INTERVAL 30 DAY
           AND estado = 'pagado'
         GROUP BY DATE(fecha_pedido)
         ORDER BY periodo;
@@ -75,7 +79,8 @@ export const getVentasPorPeriodo = async (periodo) => {
           ) as cantidad
         FROM pedidos
         WHERE 
-          YEAR(fecha_pedido) = YEAR(CURDATE())
+          -- Corregido: Obtiene datos de los últimos 12 meses.
+          fecha_pedido >= NOW() - INTERVAL 12 MONTH
           AND estado = 'pagado'
         GROUP BY periodo
         ORDER BY periodo;
